@@ -1,0 +1,3 @@
+Sensor de luz - I2C, Exterior
+Controlador de valvulas - I2C, Exterior
+Correo - Varias ventanas individuales

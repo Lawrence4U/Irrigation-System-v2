@@ -1,0 +1,18 @@
+* Conexiones
+5 valvulas goteo + microaspersión	(Dig.)		- Exterior	Preg
+Focos Iluminación 			(Dig.)		- Exterior	Done
+Calefacción 				(Dig.)		- Exterior	Done
+Ventanas con porcentaje de apertura  xN	(Anal.)		- Exterior	Preg
+Sensor Temperatura 			(Anal.)		- I2C		Done
+Sensor Anemómetro 			(Anal.)		- Exterior	DONE	
+Sensor Iluminación 			(Anal.)		- I2C		Preg
+Sensor Humedad x4			(Anal.)		- Exterior	Done
+-------------------------------------- 6 digital, 9 analog
+
+
+* Programacion
+Cada sector opcion para goteo y fertirrigacion de Venturi
+Temperatura por calefaccion y ventanas
+Obtener datos de cultivos - https://servicios.itacyl.es/iriewb/cnt/swagger-ui.html
+Modos de funcionamiento en funcion de energia disponible
+

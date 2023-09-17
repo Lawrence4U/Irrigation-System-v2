@@ -1,0 +1,17 @@
+LM75	2.77	700-LM75BIM-5+
+
+- 9bits de resolucion
+- 100 - 300 ms conversion de temp
+- +-2 -25-100
+
+LM75A	1.83	926-LM75AIM/NOPB ✔✔✔✔
+
+- 9 bits
+- +-2 -55-125
+
+LM75B/C +- iguales que el A
+
+TMP75
+
+- +-1C -40-125
+- 9 to 12bits
