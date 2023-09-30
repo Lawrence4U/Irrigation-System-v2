@@ -1,8 +1,8 @@
 * Conexiones
-5 valvulas goteo + microaspersión	(Dig.)		- Exterior	Preg
+5 valvulas goteo + microaspersión	(Dig.)		- Exterior	Done
 Focos Iluminación 			(Dig.)		- Exterior	Done
 Calefacción 				(Dig.)		- Exterior	Done
-Ventanas con porcentaje de apertura  xN	(Anal.)		- Exterior	Preg
+Ventanas con porcentaje de apertura  x2	(Anal.)		- Exterior	Preg
 Sensor Temperatura 			(Anal.)		- I2C		Done
 Sensor Anemómetro 			(Anal.)		- Exterior	DONE	
 Sensor Iluminación 			(Anal.)		- I2C		Preg
