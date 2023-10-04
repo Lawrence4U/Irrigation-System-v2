@@ -1,0 +1,191 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model NE555DR
+#/6648/2/2.37/8/4/Integrated Circuit
+DEF NE555DR IC 0 30 Y Y 1 F N
+F0 "IC" 1050 600 50 H V L CNN
+F1 "NE555DR" 1050 500 50 H V L CNN
+F2 "SOIC127P600X175-8N" 1050 400 50 H I L CNN
+F3 "http://www.ti.com/lit/ds/symlink/ne555.pdf" 1050 300 50 H I L CNN
+F4 "Single Precision Timer" 1050 200 50 H I L CNN "Description"
+F5 "1.75" 1050 100 50 H I L CNN "Height"
+F6 "Texas Instruments" 1050 0 50 H I L CNN "Manufacturer_Name"
+F7 "NE555DR" 1050 -100 50 H I L CNN "Manufacturer_Part_Number"
+F8 "595-NE555DR" 1050 -200 50 H I L CNN "Mouser Part Number"
+F9 "https://www.mouser.com/Search/Refine.aspx?Keyword=595-NE555DR" 1050 -300 50 H I L CNN "Mouser Price/Stock"
+F10 "1218414" 1050 -400 50 H I L CNN "RS Part Number"
+F11 "http//uk.rs-online.com/web/p/products/1218414" 1050 -500 50 H I L CNN "RS Price/Stock"
+DRAW
+X GND 1 600 -1000 200 U 50 50 0 0 B
+X TRIG 2 0 -400 200 R 50 50 0 0 B
+X OUT 3 1200 -200 200 L 50 50 0 0 B
+X ~RESET 4 0 0 200 R 50 50 0 0 B
+X CONT 5 500 600 200 D 50 50 0 0 B
+X THRES 6 0 -300 200 R 50 50 0 0 B
+X DISCH 7 0 -100 200 R 50 50 0 0 B
+X VCC 8 700 600 200 D 50 50 0 0 B
+P 5 0 1 6 200 400 1000 400 1000 -800 200 -800 200 400 N
+ENDDRAW
+ENDDEF
+#
+#SamacSys ECAD Model LM75BIMMX-3+
+#/599489/1216178/2.50/8/3/Integrated Circuit
+DEF LM75BIMMX-3+ IC 0 30 Y Y 1 F N
+F0 "IC" 850 300 50 H V L CNN
+F1 "LM75BIMMX-3+" 850 200 50 H V L CNN
+F2 "SOP65P490X110-8N" 850 100 50 H I L CNN
+F3 "http://componentsearchengine.com/Datasheets/1/LM75BIMMX-3+.pdf" 850 0 50 H I L CNN
+F4 "Digital Temperature Sensor and Thermal Watchdog with Two-Wire Interface" 850 -100 50 H I L CNN "Description"
+F5 "1.1" 850 -200 50 H I L CNN "Height"
+F6 "700-LM75BIMMX-3" 850 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Analog-Devices-Maxim-Integrated/LM75BIMMX-3%2b?qs=Jw2w9zrI6w%2FyP80DzQ6QkA%3D%3D" 850 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Analog Devices" 850 -500 50 H I L CNN "Manufacturer_Name"
+F9 "LM75BIMMX-3+" 850 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X SDA 1 0 0 200 R 50 50 0 0 P
+X SCL 2 0 -100 200 R 50 50 0 0 P
+X OS 3 0 -200 200 R 50 50 0 0 P
+X GND 4 0 -300 200 R 50 50 0 0 P
+X +VS 8 1000 0 200 L 50 50 0 0 P
+X A0 7 1000 -100 200 L 50 50 0 0 P
+X A1 6 1000 -200 200 L 50 50 0 0 P
+X A2 5 1000 -300 200 L 50 50 0 0 P
+P 5 0 1 6 200 100 800 100 800 -400 200 -400 200 100 N
+ENDDRAW
+ENDDEF
+#
+#SamacSys ECAD Model LM75BIMM-3+
+#/238833/1216178/2.50/8/3/Integrated Circuit
+DEF LM75BIMM-3+ IC 0 30 Y Y 1 F N
+F0 "IC" 850 300 50 H V L CNN
+F1 "LM75BIMM-3+" 850 200 50 H V L CNN
+F2 "SOP65P490X110-8N" 850 100 50 H I L CNN
+F3 "https://datasheets.maximintegrated.com/en/ds/LM75.pdf" 850 0 50 H I L CNN
+F4 "Board Mount Temperature Sensors 2-Wire Digital Temp Snsr & Thrml Wtchdog" 850 -100 50 H I L CNN "Description"
+F5 "1.1" 850 -200 50 H I L CNN "Height"
+F6 "Analog Devices" 850 -300 50 H I L CNN "Manufacturer_Name"
+F7 "LM75BIMM-3+" 850 -400 50 H I L CNN "Manufacturer_Part_Number"
+F8 "700-LM75BIMM-3+" 850 -500 50 H I L CNN "Mouser Part Number"
+F9 "https://www.mouser.co.uk/ProductDetail/Analog-Devices-Maxim-Integrated/LM75BIMM-3%2b?qs=Jw2w9zrI6w%252BZpgnTvfnTwg%3D%3D" 850 -600 50 H I L CNN "Mouser Price/Stock"
+F10 "LM75BIMM-3+" 850 -700 50 H I L CNN "Arrow Part Number"
+F11 "https://www.arrow.com/en/products/lm75bimm-3/maxim-integrated?region=nac" 850 -800 50 H I L CNN "Arrow Price/Stock"
+DRAW
+X SDA 1 0 0 200 R 50 50 0 0 P
+X SCL 2 0 -100 200 R 50 50 0 0 P
+X OS 3 0 -200 200 R 50 50 0 0 P
+X GND 4 0 -300 200 R 50 50 0 0 W
+X +VS 8 1000 0 200 L 50 50 0 0 P
+X A0 7 1000 -100 200 L 50 50 0 0 P
+X A1 6 1000 -200 200 L 50 50 0 0 P
+X A2 5 1000 -300 200 L 50 50 0 0 P
+P 5 0 1 6 200 100 800 100 800 -400 200 -400 200 100 N
+ENDDRAW
+ENDDEF
+#
+#SamacSys ECAD Model LM75BIM-5+
+#/599485/1216178/2.50/8/0/Integrated Circuit
+DEF LM75BIM-5+ IC 0 30 Y Y 1 F N
+F0 "IC" 850 300 50 H V L CNN
+F1 "LM75BIM-5+" 850 200 50 H V L CNN
+F2 "SOIC127P600X175-8N" 850 100 50 H I L CNN
+F3 "" 850 0 50 H I L CNN
+F4 "Digital Temperature Sensor and Thermal Watchdog with 2-Wire Interface" 850 -100 50 H I L CNN "Description"
+F5 "" 850 -200 50 H I L CNN "Height"
+F6 "Analog Devices" 850 -300 50 H I L CNN "Manufacturer_Name"
+F7 "LM75BIM-5+" 850 -400 50 H I L CNN "Manufacturer_Part_Number"
+F8 "700-LM75BIM-5+" 850 -500 50 H I L CNN "Mouser Part Number"
+F9 "https://www.mouser.co.uk/ProductDetail/Analog-Devices-Maxim-Integrated/LM75BIM-5%2b?qs=Jw2w9zrI6w87gLLPjZOidg%3D%3D" 850 -600 50 H I L CNN "Mouser Price/Stock"
+F10 "" 850 -700 50 H I L CNN "Arrow Part Number"
+F11 "" 850 -800 50 H I L CNN "Arrow Price/Stock"
+DRAW
+X SDA 1 0 0 200 R 50 50 0 0 P
+X SCL 2 0 -100 200 R 50 50 0 0 P
+X OS 3 0 -200 200 R 50 50 0 0 P
+X GND 4 0 -300 200 R 50 50 0 0 P
+X A2 5 1000 -300 200 L 50 50 0 0 P
+X A1 6 1000 -200 200 L 50 50 0 0 P
+X A0 7 1000 -100 200 L 50 50 0 0 P
+X +VS 8 1000 0 200 L 50 50 0 0 P
+P 5 0 1 6 200 100 800 100 800 -400 200 -400 200 100 N
+ENDDRAW
+ENDDEF
+#
+#SamacSys ECAD Model LM75AIMMX_NOPB
+#/654263/1216178/2.50/8/3/Integrated Circuit
+DEF LM75AIMMX_NOPB IC 0 30 Y Y 1 F N
+F0 "IC" 950 300 50 H V L CNN
+F1 "LM75AIMMX_NOPB" 950 200 50 H V L CNN
+F2 "SOP65P490X110-8N" 950 100 50 H I L CNN
+F3 "http://www.ti.com/lit/gpn/LM75A" 950 0 50 H I L CNN
+F4 "+/-2C, 2.7V to 5.5V industry standard temperature sensor with I2C/SMBus interface" 950 -100 50 H I L CNN "Description"
+F5 "1.1" 950 -200 50 H I L CNN "Height"
+F6 "926-LM75AIMMX/NOPB" 950 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/LM75AIMMX-NOPB?qs=QbsRYf82W3EzczEYb3tXUw%3D%3D" 950 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Texas Instruments" 950 -500 50 H I L CNN "Manufacturer_Name"
+F9 "LM75AIMMX/NOPB" 950 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X SDA 1 0 0 200 R 50 50 0 0 P
+X SCL 2 0 -100 200 R 50 50 0 0 P
+X O.S. 3 0 -200 200 R 50 50 0 0 P
+X GND 4 0 -300 200 R 50 50 0 0 P
+X +VS 8 1100 0 200 L 50 50 0 0 P
+X A0 7 1100 -100 200 L 50 50 0 0 P
+X A1 6 1100 -200 200 L 50 50 0 0 P
+X A2 5 1100 -300 200 L 50 50 0 0 P
+P 5 0 1 6 200 100 900 100 900 -400 200 -400 200 100 N
+ENDDRAW
+ENDDEF
+#
+#SamacSys ECAD Model LM75AIM_NOPB
+#/238829/1216178/2.50/8/3/Integrated Circuit
+DEF LM75AIM_NOPB IC 0 30 Y Y 1 F N
+F0 "IC" 950 300 50 H V L CNN
+F1 "LM75AIM_NOPB" 950 200 50 H V L CNN
+F2 "SOIC127P600X175-8N" 950 100 50 H I L CNN
+F3 "http://www.ti.com/lit/ds/symlink/lm75a.pdf" 950 0 50 H I L CNN
+F4 "&plusmn;2&deg;C, 2.7V to 5.5V industry standard temperature sensor with I2C/SMBus interface" 950 -100 50 H I L CNN "Description"
+F5 "1.75" 950 -200 50 H I L CNN "Height"
+F6 "926-LM75AIM/NOPB" 950 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/LM75AIM-NOPB?qs=QbsRYf82W3FB3poNe%2FnoPQ%3D%3D" 950 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Texas Instruments" 950 -500 50 H I L CNN "Manufacturer_Name"
+F9 "LM75AIM/NOPB" 950 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X SDA 1 0 0 200 R 50 50 0 0 P
+X SCL 2 0 -100 200 R 50 50 0 0 P
+X O.S. 3 0 -200 200 R 50 50 0 0 P
+X GND 4 0 -300 200 R 50 50 0 0 W
+X +VS 8 1100 0 200 L 50 50 0 0 P
+X A0 7 1100 -100 200 L 50 50 0 0 P
+X A1 6 1100 -200 200 L 50 50 0 0 P
+X A2 5 1100 -300 200 L 50 50 0 0 P
+P 5 0 1 6 200 100 900 100 900 -400 200 -400 200 100 N
+ENDDRAW
+ENDDEF
+#
+#SamacSys ECAD Model TMP75AQDGKRQ1
+#/338122/1216178/2.50/8/4/Integrated Circuit
+DEF TMP75AQDGKRQ1 IC 0 30 Y Y 1 F N
+F0 "IC" 950 300 50 H V L CNN
+F1 "TMP75AQDGKRQ1" 950 200 50 H V L CNN
+F2 "SOP65P490X110-8N" 950 100 50 H I L CNN
+F3 "http://www.ti.com/lit/ds/symlink/tmp75-q1.pdf" 950 0 50 H I L CNN
+F4 "Automotive Temp Sensor with I2C/SMBus Interface in Industry Standard LM75 Form Factor & Pinout" 950 -100 50 H I L CNN "Description"
+F5 "1.1" 950 -200 50 H I L CNN "Height"
+F6 "595-TMP75AQDGKRQ1" 950 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/TMP75AQDGKRQ1?qs=8%2FmU9qzJpL94ozirA29TNw%3D%3D" 950 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Texas Instruments" 950 -500 50 H I L CNN "Manufacturer_Name"
+F9 "TMP75AQDGKRQ1" 950 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X SDA 1 0 0 200 R 50 50 0 0 P
+X SCL 2 0 -100 200 R 50 50 0 0 P
+X ALERT 3 0 -200 200 R 50 50 0 0 P
+X GND 4 0 -300 200 R 50 50 0 0 P
+X V+ 8 1100 0 200 L 50 50 0 0 P
+X A0 7 1100 -100 200 L 50 50 0 0 P
+X A1 6 1100 -200 200 L 50 50 0 0 P
+X A2 5 1100 -300 200 L 50 50 0 0 P
+P 5 0 1 6 200 100 900 100 900 -400 200 -400 200 100 N
+ENDDRAW
+ENDDEF
+#
+#End Library

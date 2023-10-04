@@ -1,0 +1,282 @@
+
+(kicad_symbol_lib (version 20211014) (generator kicad_symbol_editor)
+  (symbol "ARDUINO_MKR_WAN_1310" (pin_names (offset 1.016)) (in_bom yes) (on_board yes)
+    (property "Reference" "U" (id 0) (at -27.94 27.94 0)
+      (effects (font (size 1.27 1.27)) (justify top left))
+    )
+    (property "Value" "ARDUINO_MKR_WAN_1310" (id 1) (at -27.94 -27.94 0)
+      (effects (font (size 1.27 1.27)) (justify bottom left))
+    )
+    (property "Footprint" "ARDUINO_MKR_WAN_1310:BOARD_ARDUINO_MKR_WAN_1310" (id 2) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "MF" "Arduino" (id 4) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "MAXIMUM_PACKAGE_HEIGHT" "1.90mm" (id 5) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "Package" "None" (id 6) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "Price" "None" (id 7) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "Check_prices" "https://www.snapeda.com/parts/ARDUINO%20MKR%20WAN%201310/Arduino/view-part/?ref=eda" (id 8) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "STANDARD" "Manufacturer Recommendations" (id 9) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "PARTREV" "06/27/2019" (id 10) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "SnapEDA_Link" "https://www.snapeda.com/parts/ARDUINO%20MKR%20WAN%201310/Arduino/view-part/?ref=snap" (id 11) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "MP" "ARDUINO MKR WAN 1310" (id 12) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "Description" "\nArduino Pro; LoRa; SAM D21; 5VDC; Flash: 256kB; SRAM: 32kB\n" (id 13) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "SNAPEDA_PN" "ARDUINO MKR WAN 1310" (id 14) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "Availability" "Not in stock" (id 15) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "MANUFACTURER" "Arduino" (id 16) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (symbol "ARDUINO_MKR_WAN_1310_0_0"
+      (rectangle (start -27.94 -25.4) (end 27.94 25.4)
+        (stroke (width 0.254)) (fill (type background))
+      )
+      (pin bidirectional line (at -33.02 5.08 0) (length 5.08)
+        (name "PA03/AREF/AIN(1)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_1"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -33.02 7.62 0) (length 5.08)
+        (name "PA02/D15/DAC0/AIN(0)/A0"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_2"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 33.02 -2.54 180.0) (length 5.08)
+        (name "PB02/D16/AIN(10)/A1"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_3"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 33.02 -5.08 180.0) (length 5.08)
+        (name "PB03/D17/AIN(11)/A2"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_4"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -33.02 2.54 0) (length 5.08)
+        (name "PA04/D18(PWM)/AIN(4)/A3"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_5"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -33.02 0.0 0) (length 5.08)
+        (name "PA05/D19(PWM)/AIN(5)/A4"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_6"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -33.02 -2.54 0) (length 5.08)
+        (name "PA06/D20/AIN(6)/A5"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_7"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -33.02 -5.08 0) (length 5.08)
+        (name "PA07/D21/AIN(7)/A6"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_8"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 33.02 5.08 180.0) (length 5.08)
+        (name "PA22/D0(PWM)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_9"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 33.02 2.54 180.0) (length 5.08)
+        (name "PA23/D1(PWM)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_10"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -33.02 -12.7 0) (length 5.08)
+        (name "PA10/D2(PWM)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_11"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -33.02 -15.24 0) (length 5.08)
+        (name "PA11/D3(PWM)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_12"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 33.02 -7.62 180.0) (length 5.08)
+        (name "PB10/D4(PWM)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_13"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 33.02 -10.16 180.0) (length 5.08)
+        (name "PB11/D5(PWM)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J3_14"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin power_in line (at 33.02 17.78 180.0) (length 5.08)
+        (name "+5V"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_14"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin power_in line (at 33.02 22.86 180.0) (length 5.08)
+        (name "VIN"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_13"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin power_in line (at 33.02 20.32 180.0) (length 5.08)
+        (name "+3V3"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_12"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin power_in line (at 33.02 -22.86 180.0) (length 5.08)
+        (name "GND"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_11"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input line (at -33.02 12.7 0) (length 5.08)
+        (name "RESET"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_10"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 33.02 -12.7 180.0) (length 5.08)
+        (name "PB22/D14/TX(SC5)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_9"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 33.02 -15.24 180.0) (length 5.08)
+        (name "PB23/D13/RX(SC5)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_8"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -33.02 -10.16 0) (length 5.08)
+        (name "PA09/D12(PWM)/SCL(SC2)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_7"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -33.02 -7.62 0) (length 5.08)
+        (name "PA08/D11/SDA(SC2)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_6"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 33.02 12.7 180.0) (length 5.08)
+        (name "PA19/D10(PWM)/CIPO(SC1)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_5"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -33.02 -20.32 0) (length 5.08)
+        (name "PA17/D9/SCK(SC1)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_4"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -33.02 -17.78 0) (length 5.08)
+        (name "PA16/D8(PWM)/COPI(SC1)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_3"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 33.02 7.62 180.0) (length 5.08)
+        (name "PA21/D7(PWM)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_2"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 33.02 10.16 180.0) (length 5.08)
+        (name "PA20/D6(PWM)"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "J5_1"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+    )
+  )
+)

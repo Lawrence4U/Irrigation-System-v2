@@ -1,0 +1,45 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP NE555DR
+D Single Precision Timer
+K
+F http://www.ti.com/lit/ds/symlink/ne555.pdf
+$ENDCMP
+#
+$CMP LM75BIMMX-3+
+D Digital Temperature Sensor and Thermal Watchdog with Two-Wire Interface
+K
+F http://componentsearchengine.com/Datasheets/1/LM75BIMMX-3+.pdf
+$ENDCMP
+#
+$CMP LM75BIMM-3+
+D Board Mount Temperature Sensors 2-Wire Digital Temp Snsr & Thrml Wtchdog
+K
+F https://datasheets.maximintegrated.com/en/ds/LM75.pdf
+$ENDCMP
+#
+$CMP LM75BIM-5+
+D Digital Temperature Sensor and Thermal Watchdog with 2-Wire Interface
+K
+F 
+$ENDCMP
+#
+$CMP LM75AIMMX_NOPB
+D +/-2C, 2.7V to 5.5V industry standard temperature sensor with I2C/SMBus interface
+K
+F http://www.ti.com/lit/gpn/LM75A
+$ENDCMP
+#
+$CMP LM75AIM_NOPB
+D &plusmn;2&deg;C, 2.7V to 5.5V industry standard temperature sensor with I2C/SMBus interface
+K
+F http://www.ti.com/lit/ds/symlink/lm75a.pdf
+$ENDCMP
+#
+$CMP TMP75AQDGKRQ1
+D Automotive Temp Sensor with I2C/SMBus Interface in Industry Standard LM75 Form Factor & Pinout
+K
+F http://www.ti.com/lit/ds/symlink/tmp75-q1.pdf
+$ENDCMP
+#
+#End Doc Library
