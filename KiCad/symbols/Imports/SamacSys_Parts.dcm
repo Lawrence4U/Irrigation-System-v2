@@ -42,4 +42,22 @@ K
 F http://www.ti.com/lit/ds/symlink/tmp75-q1.pdf
 $ENDCMP
 #
+$CMP MAX7300AAI+
+D Interface - I/O Expanders 2-Wire-Interfaced, 2.5V to 5.5V, 20-Port or 28-Port I/O Expander
+K
+F https://ms.componentsearchengine.com/Datasheets/1/MAX7300AAI+.pdf
+$ENDCMP
+#
+$CMP MCP23017-E_SO
+D 16-bit I/O Expander,I2C,MCP23017-E/SO
+K
+F https://datasheet.datasheetarchive.com/originals/distributors/SFDatasheet-4/sf-00090057.pdf
+$ENDCMP
+#
+$CMP LM75AIMX_NOPB
+D &plusmn;2&deg;C, 2.7V to 5.5V industry standard temperature sensor with I2C/SMBus interface
+K
+F http://www.ti.com/lit/gpn/lm75a
+$ENDCMP
+#
 #End Doc Library
