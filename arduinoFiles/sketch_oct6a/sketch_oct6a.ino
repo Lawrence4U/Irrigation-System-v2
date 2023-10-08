@@ -16,55 +16,58 @@
 #define S_HUM_3_EN 2
 #define S_ILUM_EN 3
 #define S_ANEM_EN 4
-#define FOCO_EN 5
-#define HEAT_EN 6
+#define HEAT_EN 5
+#define FOCO1_EN 6
+#define FOCO2_EN 7
+#define FOCO3_EN 8
+#define FOCO4_EN 9
 #define SDA 11
 #define SCL 12
 
-//expander addresses IOCON.BANK = 1
+//expander addresses IOCON.BANK = 0
 #define ADDR_EXP_1 0b0100000
-#define ADDR_EXP_2 0x0100001
-#define EXP_GPIOA 0x09 //value of pins 7-0
-#define EXP_GPIOB 0x19
-#define IODIR_A 0x00 //direction of pins 7-0
-#define IODIR_B 0x10 // [0,1] -> [output,input]
-#define IPOL_A //Polaridad del pin. Poner a 0 para ignorar
-#define IPOL_B 
-#define GPINT_A //enable interrupt. Poner a 0 para ign.
-#define GPINT_B
-#define IOCON_A 
-#define IOCON_B
+#define ADDR_EXP_2 0b0100001
+#define GPIOA 0x12 //value of pins 7-0
+#define GPIOB 0x13
+#define IODIR_A 0x00 // direction of pins 7-0. Def 1
+#define IODIR_B 0x01 // [0,1] -> [output,input]
 
 
 //temp sensor addresses
 #define ADDR_TEMP 0b1001000
+#define TEMP_READ 0b0
 
-//pin addresses
-#define P1_EN
-#define P1_IN1 
-#define P1_IN2
-#define P2_EN
-#define P2_IN1 
-#define P2_IN2
-#define P3_EN
-#define P3_IN1 
-#define P3_IN2
-#define P4_EN
-#define P4_IN1 
-#define P4_IN2
-#define P5_EN
-#define P5_IN1
-#define P5_IN2
-#define W1_EN
-#define W1_IN1 
-#define W1_IN2
-#define W2_EN
-#define W2_IN1 
-#define W2_IN2
-#define R1_EN
-#define R1_IN1 
-#define R1_IN2
+//pin addresses EXP_1
+// B
+#define P1_EN   0
+#define P1_IN1  1
+#define P1_IN2  2
+#define P2_EN   3
+#define P2_IN1  4
+#define P2_IN2  5
+#define P3_EN   6
+#define P3_IN1  7
+//A
+#define P3_IN2  0
+#define P4_EN   1
+#define P4_IN1  2
+#define P4_IN2  3
+#define P5_EN   4
+#define P5_IN1  5
+#define P5_IN2  6
 
+//pin addresses EXP_2
+//A
+#define W1_EN   0
+#define W1_IN1  1
+#define W1_IN2  2
+#define W2_EN   3
+#define W2_IN1  4
+#define W2_IN2  5
+//B
+#define R1_EN   0
+#define R1_IN1  1
+#define R1_IN2  2
 
 LoRaModem modem;
 RTCZero rtc;
