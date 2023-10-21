@@ -6,7 +6,7 @@ Ventanas con porcentaje de apertura  x2	(Anal.)		- Exterior	Done
 Sensor Temperatura 			(Anal.)		- I2C		Done
 Sensor Anemómetro 			(Anal.)		- Exterior	Done
 Sensor Iluminación 			(Anal.)		- Ext		Done
-Sensor Humedad x4			(Anal.)		- Exterior	Done
+Sensor Humedad x3			(Anal.)		- Exterior	Done
 -------------------------------------- 6 digital, 9 analog
 
 
