@@ -60,4 +60,10 @@ K
 F http://www.ti.com/lit/gpn/lm75a
 $ENDCMP
 #
+$CMP 2071556-9
+D General Purpose Relays OJS-SH-105HMF,00000
+K
+F 
+$ENDCMP
+#
 #End Doc Library
