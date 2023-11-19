@@ -66,4 +66,10 @@ K
 F 
 $ENDCMP
 #
+$CMP DS89C21TMX_NOPB
+D Differential CMOS Line Driver and Receiver Pair
+K
+F http://www.ti.com/lit/gpn/ds89c21
+$ENDCMP
+#
 #End Doc Library

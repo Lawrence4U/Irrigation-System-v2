@@ -1,0 +1,8 @@
+Driver:
+https://www.mouser.es/ProductDetail/Texas-Instruments/DS89C21TMX-NOPB?qs=7X5t%252BdzoRHAsm2O2RRBwEg%3D%3D
+
+
+Doc:
+https://www.analog.com/media/en/technical-documentation/application-notes/an-960.pdf
+
+- resistor equal to impedance of calbe on termination

@@ -1,8 +1,8 @@
 (module "SOIC127P600X175-8N" (layer F.Cu)
-  (descr "8-Pin SOIC-ren5")
-  (tags "Undefined or Miscellaneous")
+  (descr "D")
+  (tags "Integrated Circuit")
   (attr smd)
-  (fp_text reference U** (at 0 0) (layer F.SilkS)
+  (fp_text reference IC** (at 0 0) (layer F.SilkS)
     (effects (font (size 1.27 1.27) (thickness 0.254)))
   )
   (fp_text user %R (at 0 0) (layer F.Fab)
@@ -33,7 +33,7 @@
   (pad 6 smd rect (at 2.711 0.635 90) (size 0.65 1.528) (layers F.Cu F.Paste F.Mask))
   (pad 7 smd rect (at 2.711 -0.635 90) (size 0.65 1.528) (layers F.Cu F.Paste F.Mask))
   (pad 8 smd rect (at 2.711 -1.905 90) (size 0.65 1.528) (layers F.Cu F.Paste F.Mask))
-  (model "C:\\Users\\Alvaro\\Documents\\KiCad\\7.0\\Imports\\SamacSys_Parts.3dshapes\\LM75AIMX_NOPB.stp"
+  (model "C:\\Users\\Alvaro\\Desktop\\Irrigation-System-v2\\KiCad\\symbols\\Imports\\SamacSys_Parts.3dshapes\\DS89C21TMX_NOPB.stp"
     (at (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))
