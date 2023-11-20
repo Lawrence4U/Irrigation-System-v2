@@ -16,3 +16,5 @@
 + Uno muy simplón con salida analógica [link](https://www.digikey.es/es/products/detail/adafruit-industries-llc/2748/5775538?utm_adgroup=General&utm_source=google&utm_medium=cpc&utm_campaign=PMax_Product_Zombie%20SKUs&utm_term=&productid=5775538&utm_content=General&utm_id=go_cmp-19786875254_adg-_ad-__dev-c_ext-_prd-5775538_sig-CjwKCAjwkY2qBhBDEiwAoQXK5QnLkPmBjehaLRNaR66f1fCBINZ-4rKUn1EyCI5LZPRHOoeOezB7-xoCTpoQAvD_BwE&gad_source=1&gclid=CjwKCAjwkY2qBhBDEiwAoQXK5QnLkPmBjehaLRNaR66f1fCBINZ-4rKUn1EyCI5LZPRHOoeOezB7-xoCTpoQAvD_BwE)
 
 Casi todos los sensores de luz son un sensor montado en una placa por I2C
+
+st1480 422 driver
