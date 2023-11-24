@@ -78,4 +78,10 @@ K
 F http://ww1.microchip.com/downloads/en/DeviceDoc/40001906C.pdf
 $ENDCMP
 #
+$CMP TEMT6000X01
+D Ambient Light Sensor 570nm SMD3 Vishay TEMT6000X01 +/-60  Visible Light Phototransistor, Surface Mount 3-Pin 1206 package
+K
+F https://www.vishay.com/docs/81579/temt6000.pdf
+$ENDCMP
+#
 #End Doc Library

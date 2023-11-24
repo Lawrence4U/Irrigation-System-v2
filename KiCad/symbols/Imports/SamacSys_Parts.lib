@@ -404,4 +404,25 @@ P 5 0 1 6 200 1500 3000 1500 3000 -2300 200 -2300 200 1500 N
 ENDDRAW
 ENDDEF
 #
+#SamacSys ECAD Model TEMT6000X01
+#/241523/1216178/2.50/3/4/Phototransistor
+DEF TEMT6000X01 Q 0 30 Y Y 1 F N
+F0 "Q" 750 300 50 H V L CNN
+F1 "TEMT6000X01" 750 200 50 H V L CNN
+F2 "TEMT6000X01" 750 100 50 H I L CNN
+F3 "https://www.vishay.com/docs/81579/temt6000.pdf" 750 0 50 H I L CNN
+F4 "Ambient Light Sensor 570nm SMD3 Vishay TEMT6000X01 +/-60  Visible Light Phototransistor, Surface Mount 3-Pin 1206 package" 750 -100 50 H I L CNN "Description"
+F5 "" 750 -200 50 H I L CNN "Height"
+F6 "78-TEMT6000" 750 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Vishay-Semiconductors/TEMT6000X01?qs=%2Fjqivxn91ccZGXDwz0wGxg%3D%3D" 750 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Vishay" 750 -500 50 H I L CNN "Manufacturer_Name"
+F9 "TEMT6000X01" 750 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X E_1 1 0 -100 200 R 50 50 0 0 P
+X E_2 2 0 0 200 R 50 50 0 0 P
+X C 3 900 0 200 L 50 50 0 0 P
+P 5 0 1 6 200 100 700 100 700 -200 200 -200 200 100 N
+ENDDRAW
+ENDDEF
+#
 #End Library
