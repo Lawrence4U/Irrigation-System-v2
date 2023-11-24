@@ -1512,7 +1512,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 207dee2a-652e-400c-a5d8-26e14901b431)
   )
-  (label "RI_1" (at 29.21 33.02 90) (fields_autoplaced)
+  (label "RI-" (at 29.21 33.02 90) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 23822888-97c8-4068-8ddc-26dca2758085)
   )
@@ -1524,7 +1524,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 5ad9038a-3ceb-42e7-8e3a-4897f0d01205)
   )
-  (label "RI_2" (at 31.75 33.02 90) (fields_autoplaced)
+  (label "RI+" (at 31.75 33.02 90) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 5e7320a6-b7ba-4d0e-a9aa-0e5b56e728ed)
   )
@@ -1532,7 +1532,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 69281765-1645-4df6-ab66-635384e016a9)
   )
-  (label "D0_1" (at 24.13 33.02 90) (fields_autoplaced)
+  (label "D0-" (at 24.13 33.02 90) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 72e30e5a-baae-408f-8eb2-a83a27ca41d5)
   )
@@ -1540,7 +1540,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 778174a9-bef6-4888-8b2c-6c5400a7da9d)
   )
-  (label "RI_1" (at 68.58 59.69 0) (fields_autoplaced)
+  (label "RI-" (at 68.58 59.69 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 7a99a1c6-f51f-44d4-a2fd-715bd0a11578)
   )
@@ -1572,11 +1572,11 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid bc4945d7-a5a0-47e8-8957-c6f1e0a6defb)
   )
-  (label "RI_2" (at 68.58 52.07 0) (fields_autoplaced)
+  (label "RI+" (at 68.58 52.07 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid bd708b41-b17a-476b-bfc9-98d499ef2f22)
   )
-  (label "D0_2" (at 26.67 33.02 90) (fields_autoplaced)
+  (label "D0+" (at 26.67 33.02 90) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid c1f47e2f-c562-4e46-b6d3-1f585a2259b0)
   )
@@ -1584,7 +1584,7 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid cefe6f89-dae1-45ba-b001-359691bb5a76)
   )
-  (label "D0_2" (at 54.61 59.69 180) (fields_autoplaced)
+  (label "D0+" (at 54.61 59.69 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid d046c1d0-0b1d-4c8e-a393-0967a60a00dc)
   )
@@ -1600,7 +1600,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid e6ae294c-17ae-4611-875c-6910ad82b2c9)
   )
-  (label "D0_1" (at 54.61 62.23 180) (fields_autoplaced)
+  (label "D0-" (at 54.61 62.23 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid eb4225ad-4512-4a22-bbba-7078bb89fbaa)
   )
@@ -1645,7 +1645,7 @@
       )
       (project "SalveNode"
         (path "/947c7390-073c-40c7-ae18-83309c4a488f"
-          (reference "#PWR013") (unit 1)
+          (reference "#PWR014") (unit 1)
         )
       )
     )
@@ -1680,7 +1680,7 @@
   (symbol (lib_id "Device:Crystal") (at 105.41 24.13 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 361374ef-e2d3-4b15-b57d-eb7ce09ff9af)
-    (property "Reference" "Y2" (at 105.41 16.51 0)
+    (property "Reference" "Y1" (at 105.41 16.51 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "Crystal" (at 105.41 19.05 0)
@@ -1697,7 +1697,7 @@
     (instances
       (project "SalveNode"
         (path "/947c7390-073c-40c7-ae18-83309c4a488f"
-          (reference "Y2") (unit 1)
+          (reference "Y1") (unit 1)
         )
       )
     )
@@ -1761,7 +1761,7 @@
   (symbol (lib_id "power:+5V") (at 175.26 137.16 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4395e7c4-899e-48c2-aa3d-aa0adee57b54)
-    (property "Reference" "#PWR012" (at 175.26 133.35 0)
+    (property "Reference" "#PWR013" (at 175.26 133.35 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 175.26 140.97 90)
@@ -1777,7 +1777,7 @@
     (instances
       (project "SalveNode"
         (path "/947c7390-073c-40c7-ae18-83309c4a488f"
-          (reference "#PWR012") (unit 1)
+          (reference "#PWR013") (unit 1)
         )
       )
     )
@@ -1832,7 +1832,7 @@
       )
       (project "SalveNode"
         (path "/947c7390-073c-40c7-ae18-83309c4a488f"
-          (reference "#PWR016") (unit 1)
+          (reference "#PWR012") (unit 1)
         )
       )
     )
@@ -2131,31 +2131,6 @@
     )
   )
 
-  (symbol (lib_id "power:+5V") (at 24.13 156.21 180) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 999259ff-d233-46f3-bff8-51187a835441)
-    (property "Reference" "#PWR07" (at 24.13 152.4 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "+5V" (at 24.13 161.29 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 24.13 156.21 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 24.13 156.21 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 2e34edd2-cd6a-4b0e-b086-a9981882362a))
-    (instances
-      (project "SalveNode"
-        (path "/947c7390-073c-40c7-ae18-83309c4a488f"
-          (reference "#PWR07") (unit 1)
-        )
-      )
-    )
-  )
-
   (symbol (lib_id "Device:R") (at 62.23 55.88 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9be1f88e-4787-4731-8c42-fd02d900b55b)
@@ -2220,7 +2195,7 @@
   (symbol (lib_id "Device:C") (at 111.76 31.75 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid aaf1c405-eb31-42f0-9bff-22f75270bc5b)
-    (property "Reference" "C1" (at 115.57 30.48 0)
+    (property "Reference" "C2" (at 115.57 30.48 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "C" (at 115.57 33.02 0)
@@ -2237,7 +2212,7 @@
     (instances
       (project "SalveNode"
         (path "/947c7390-073c-40c7-ae18-83309c4a488f"
-          (reference "C1") (unit 1)
+          (reference "C2") (unit 1)
         )
       )
     )
@@ -2276,7 +2251,7 @@
   (symbol (lib_id "Device:C") (at 97.79 31.75 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b423e52e-f0da-4214-9ab5-725018c59659)
-    (property "Reference" "C2" (at 101.6 30.48 0)
+    (property "Reference" "C1" (at 101.6 30.48 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "C" (at 101.6 33.02 0)
@@ -2293,7 +2268,7 @@
     (instances
       (project "SalveNode"
         (path "/947c7390-073c-40c7-ae18-83309c4a488f"
-          (reference "C2") (unit 1)
+          (reference "C1") (unit 1)
         )
       )
     )
@@ -2357,7 +2332,7 @@
   (symbol (lib_id "power:Earth") (at 177.8 137.16 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid cb0efbd5-f6b9-4c5a-84d6-8cc72c15161b)
-    (property "Reference" "#PWR014" (at 177.8 143.51 0)
+    (property "Reference" "#PWR015" (at 177.8 143.51 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "Earth" (at 177.8 140.97 0)
@@ -2373,7 +2348,32 @@
     (instances
       (project "SalveNode"
         (path "/947c7390-073c-40c7-ae18-83309c4a488f"
-          (reference "#PWR014") (unit 1)
+          (reference "#PWR015") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:Earth") (at 24.13 156.21 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid d5952c1e-f0ec-4ff7-b65c-f78f6975ef00)
+    (property "Reference" "#PWR07" (at 24.13 162.56 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "Earth" (at 24.13 160.02 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Footprint" "" (at 24.13 156.21 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 24.13 156.21 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 1af2d289-3860-40ee-a8cd-9637aa2379d5))
+    (instances
+      (project "SalveNode"
+        (path "/947c7390-073c-40c7-ae18-83309c4a488f"
+          (reference "#PWR07") (unit 1)
         )
       )
     )
@@ -2407,7 +2407,7 @@
   (symbol (lib_id "power:+5V") (at 182.88 55.88 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid dc0a4169-a363-4d8b-8da9-8cb8e95e5c10)
-    (property "Reference" "#PWR015" (at 182.88 59.69 0)
+    (property "Reference" "#PWR016" (at 182.88 59.69 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 182.88 52.07 90)
@@ -2423,7 +2423,7 @@
     (instances
       (project "SalveNode"
         (path "/947c7390-073c-40c7-ae18-83309c4a488f"
-          (reference "#PWR015") (unit 1)
+          (reference "#PWR016") (unit 1)
         )
       )
     )
