@@ -3730,12 +3730,12 @@
     (uuid f5b64e35-9eb7-4b3e-b590-efd53c218e43)
   )
 
-  (text_box "Conector/Cable?"
-    (at 254 34.29 0) (size 60.96 30.48)
+  (text_box "METER UN PUNTO MAS PARA ALIMENTACION DE ESCALVO\n\nUSAR EL 328P DIRECTAMENTE"
+    (at 256.54 34.29 0) (size 43.18 34.29)
     (stroke (width 0) (type default))
     (fill (type none))
     (effects (font (size 1.27 1.27)) (justify left top))
-    (uuid e48077b4-f3e3-4015-b19e-a83a663b7b27)
+    (uuid ab65f300-35a4-44cc-b6f0-5d53d3b49728)
   )
 
   (text "Sensor\ncond.\n\n" (at 86.36 24.13 0)
