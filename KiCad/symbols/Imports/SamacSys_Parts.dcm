@@ -84,4 +84,10 @@ K
 F https://www.vishay.com/docs/81579/temt6000.pdf
 $ENDCMP
 #
+$CMP ECS-160-18-5PX-GM-TR
+D Crystals 16.000 MHz 18 pF CSM-7X +/-30/30 ppm -20 - +70C RoHS
+K
+F 
+$ENDCMP
+#
 #End Doc Library
