@@ -96,4 +96,10 @@ K
 F http://www.vishay.com/docs/84286/veml7700.pdf
 $ENDCMP
 #
+$CMP XRCGB16M000FXN14R0
+D Crystal 16MHz +/-40ppm (Tol) 10pF 200Ohm 4-Pin SMD T/R
+K
+F https://4donline.ihs.com/images/VipMasterIC/IC/MURE/MURE-S-A0014827291/MURE-S-A0014827208-1.pdf?hkey=EF798316E3902B6ED9A73243A3159BB0
+$ENDCMP
+#
 #End Doc Library
