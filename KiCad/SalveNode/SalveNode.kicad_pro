@@ -473,7 +473,12 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "Power",
+        "pattern": "Earth"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
