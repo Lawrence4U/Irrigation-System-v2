@@ -56,7 +56,15 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "clearance|154939340|60310661|c84714f8-58cb-474f-85e2-88b41f935288|35cd42c5-cb82-4847-a3e6-eed89233fada",
+        "clearance|154939340|61017767|3fa549c1-f89b-4685-845b-3734bc4cadd6|c84714f8-58cb-474f-85e2-88b41f935288",
+        "clearance|155646447|60310661|7e209fce-d510-419e-9aa9-2b49b7955675|35cd42c5-cb82-4847-a3e6-eed89233fada",
+        "clearance|155646447|61017767|3fa549c1-f89b-4685-845b-3734bc4cadd6|7e209fce-d510-419e-9aa9-2b49b7955675",
+        "clearance|155699480|59550521|35cd42c5-cb82-4847-a3e6-eed89233fada|861984b2-c652-4b29-a0b3-42ae6610b486",
+        "clearance|156300521|59550520|ca3bc116-3fab-4795-8753-639557bd5c99|861984b2-c652-4b29-a0b3-42ae6610b486",
+        "clearance|156353554|60310661|7e209fce-d510-419e-9aa9-2b49b7955675|ca3bc116-3fab-4795-8753-639557bd5c99"
+      ],
       "meta": {
         "version": 2
       },
@@ -477,6 +485,14 @@
       {
         "netclass": "Power",
         "pattern": "Earth"
+      },
+      {
+        "netclass": "Power",
+        "pattern": ".*V$"
+      },
+      {
+        "netclass": "Signal",
+        "pattern": "^.*$"
       }
     ]
   },
