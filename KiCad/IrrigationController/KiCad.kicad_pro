@@ -474,19 +474,31 @@
     "netclass_patterns": [
       {
         "netclass": "Power",
-        "pattern": "+*V"
-      },
-      {
-        "netclass": "Power",
         "pattern": "Earth"
       },
       {
         "netclass": "Signal",
-        "pattern": "/*"
+        "pattern": "Net*"
       },
       {
-        "netclass": "Signal",
-        "pattern": "Net*"
+        "netclass": "Power",
+        "pattern": "/COM*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/NO*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+*V"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/Vin"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/out_*"
       }
     ]
   },
