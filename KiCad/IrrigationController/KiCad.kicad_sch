@@ -5033,7 +5033,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid fe243e47-b80b-46bb-a53a-c32c4cd68699)
   )
-  (label "out_win_21" (at 185.42 172.72 270) (fields_autoplaced)
+  (label "out_win_11" (at 185.42 172.72 270) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid fee121e5-f181-401d-95a2-f1ec654899b7)
   )
