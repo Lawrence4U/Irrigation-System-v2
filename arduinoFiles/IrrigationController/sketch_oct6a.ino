@@ -37,7 +37,7 @@
 #define ADDR_TEMP 0b1001000
 #define TEMP_READ 0b0
 
-//pin addresses EXP_1
+//pin addresses of I/O expander EXP_1
 // B
 #define P1_EN   0
 #define P1_IN1  1
