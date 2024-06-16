@@ -3,19 +3,17 @@
 #include <Wire.h>
 #include "arduino_secrets.h"
 
-// analog pins definition
+// analog pins definition A#
 #define S_HUM_1_IN 0
 #define S_HUM_2_IN 1
 #define S_HUM_3_IN 2
-#define S_ILUM_IN  3
 #define S_ANEM_IN  4
 
-//digital pins
+//digital pins D#
 #define S_HUM_1_EN 0
 #define S_HUM_2_EN 1
 #define S_HUM_3_EN 2
-#define S_ILUM_EN 3
-#define S_ANEM_EN 4
+#define PULSE_IN 4
 #define HEAT_EN 5
 #define FOCO1_EN 6
 #define FOCO2_EN 7
@@ -34,8 +32,8 @@
 
 
 //temp sensor addresses
-#define ADDR_TEMP 0b1001000
-#define TEMP_READ 0b0
+// #define ADDR_TEMP 0b1001000
+// #define TEMP_READ 0b0
 
 //pin addresses of I/O expander EXP_1
 // B
@@ -45,29 +43,31 @@
 #define P2_EN   3
 #define P2_IN1  4
 #define P2_IN2  5
-#define P3_EN   6
-#define P3_IN1  7
+#define P5_IN1  6
+#define P5_IN2  7
 //A
-#define P3_IN2  0
-#define P4_EN   1
-#define P4_IN1  2
-#define P4_IN2  3
-#define P5_EN   4
-#define P5_IN1  5
-#define P5_IN2  6
+#define P5_EN  0
+#define P4_EN  1
+#define P4_IN1 2
+#define P4_IN2 3
+#define P3_EN  4
+#define P3_IN1 5
+#define P3_IN2 6
 
 //pin addresses EXP_2
 //A
-#define W1_EN   0
-#define W1_IN1  1
-#define W1_IN2  2
-#define W2_EN   3
-#define W2_IN1  4
-#define W2_IN2  5
+#define W2_EN   0
+#define W2_IN1  1
+#define W2_IN2  2
+#define W1_EN   3
+#define W1_IN1  4
+#define W1_IN2  5
 //B
-#define R1_EN   0
-#define R1_IN1  1
-#define R1_IN2  2
+#define R1_EN      0
+#define R1_IN1     1
+#define R1_IN2     2
+#define RELAY_1_EN 6
+#define RELAY_2_EN 7
 
 LoRaModem modem;
 RTCZero rtc;
