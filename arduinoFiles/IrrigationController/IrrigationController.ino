@@ -1,13 +1,14 @@
+#include <RTCZero.h>
 #include <MKRWAN_v2.h>
-#include <I2C_16Bit.h>
+//#include <I2C_16Bit.h>
 #include <Wire.h>
 #include "arduino_secrets.h"
 
 // analog pins definition A#
-#define S_HUM_1_IN 0
-#define S_HUM_2_IN 1
-#define S_HUM_3_IN 2
-#define S_ANEM_IN  4
+#define S_HUM_1_IN A0
+#define S_HUM_2_IN A1
+#define S_HUM_3_IN A2
+#define S_ANEM_IN  A4
 
 //digital pins D#
 #define S_HUM_1_EN 0
@@ -22,13 +23,14 @@
 #define SDA 11
 #define SCL 12
 
-//expander addresses IOCON.BANK = 0
+//expander addresses IOCON.BANK = 0. Default is 0 and sequential enabled
 #define ADDR_EXP_1 0b0100000
 #define ADDR_EXP_2 0b0100001
 #define GPIOA 0x12 //value of pins 7-0
 #define GPIOB 0x13
 #define IODIR_A 0x00 // direction of pins 7-0. Def 1
 #define IODIR_B 0x01 // [0,1] -> [output,input]
+#define IOCON_CONFIG 0b00001000 //set HAEN 1 to enable addressing through pins
 
 
 //temp sensor addresses
@@ -36,7 +38,7 @@
 // #define TEMP_READ 0b0
 
 //pin addresses of I/O expander EXP_1
-// B
+//GPIOB
 #define P1_EN   0
 #define P1_IN1  1
 #define P1_IN2  2
@@ -45,7 +47,7 @@
 #define P2_IN2  5
 #define P5_IN1  6
 #define P5_IN2  7
-//A
+//GPIOA
 #define P5_EN  0
 #define P4_EN  1
 #define P4_IN1 2
@@ -55,14 +57,14 @@
 #define P3_IN2 6
 
 //pin addresses EXP_2
-//A
+//GPIOA
 #define W2_EN   0
 #define W2_IN1  1
 #define W2_IN2  2
 #define W1_EN   3
 #define W1_IN1  4
 #define W1_IN2  5
-//B
+//GPIOB
 #define R1_EN      0
 #define R1_IN1     1
 #define R1_IN2     2
@@ -75,30 +77,190 @@ RTCZero rtc;
 String appEui = SECRET_APP_EUI;
 String appKey = SECRET_APP_KEY;
 
+// typedef enum{
+//   HUMIDITY1,
+//   HUMIDITY2,
+//   HUMIDITY3,
+//   ANEMOMETER,
+//   TEMPERATURE,
+//   LIGHT
+// }SensorType;
+typedef struct {
+    const int read_pin;
+    const int enable_pin;
+    double value;
+} AnalogSensor;
+
+// typedef struct {
+//   SensorType type;
+//   double value;
+// } SensorValue;
+
+#define NUM_HUM_SENSOR 3
+#define NUM_ANEMOM 1
+#define NUM_TEMP_SENSOR 1
+#define NUM_LIGHT_SENSOR 1
+#define NUM_SENSORS NUM_HUM_SENSOR + NUM_LIGHT_SENSOR + NUM_ANEMOM + NUM_TEMP_SENSOR
+
+AnalogSensor sens_hum[NUM_HUM_SENSOR] = {{S_HUM_1_IN, S_HUM_1_EN, -1},{S_HUM_2_IN, S_HUM_2_EN, -1},{S_HUM_3_IN, S_HUM_3_EN, -1}}; 
+AnalogSensor sens_anemom[NUM_ANEMOM] = {{S_ANEM_IN, NULL, -1}};
+double temp_values[NUM_TEMP_SENSOR] = {-1};
+double light_values[NUM_LIGHT_SENSOR] = {-1};
+
+void setupAnalogSensors(const AnalogSensor sensors[], int num_sensors); // setup sensors
+double readAnalogSensor(const AnalogSensor sensor); // read sensor value multiple times and return average
+double processHumidityData(double readValue); // transform analog value to humidity percentage
+double processWindData(double readValue); // transform analog value to wind speed in m/s
+void setupExpansors(); // set config and port configuration for each as per #definitions
+void setI2CPin(bool pinValue, int exp_address, int port); // set pin of expansor to high or low 
+
+void togglePin(int pin){
+  pinMode(pin, OUTPUT);
+  digitalWrite(pin, HIGH);
+  delay(500);
+  digitalWrite(pin, LOW);
+  Serial.println("pin" + String(pin) +  "toggled");
+  return;  
+}
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
   while (!Serial);
   // change this to your regional band (eg. US915, AS923, ...)
-  if (!modem.begin(EU868)) {
-    Serial.println("Failed to start module");
-    while (1) {}
-  };
-  Serial.print("Your module version is: ");
-  Serial.println(modem.version());
-  Serial.print("Your device EUI is: ");
-  Serial.println(modem.deviceEUI());
+  // if (!modem.begin(EU868)) {
+  //   Serial.println("Failed to start module");
+  //   while (1) {}
+  // };
+  // Serial.print("Your module version is: ");
+  // Serial.println(modem.version());
+  // Serial.print("Your device EUI is: ");
+  // Serial.println(modem.deviceEUI());
 
-  int connected = modem.joinOTAA(appEui, appKey);
-  if (!connected) {
-    Serial.println("Something went wrong; are you indoor? Move near a window and retry");
-    while (1) {}
-  }
+  // int connected = modem.joinOTAA(appEui, appKey);
+  // if (!connected) {
+  //   Serial.println("Something went wrong; are you indoor? Move near a window and retry");
+  //   while (1) {}
+  // }
 
-  modem.minPollInterval(60);
+  // modem.minPollInterval(60);
 
+  // setup humidity sensors
+  setupAnalogSensors(sens_hum, NUM_HUM_SENSOR);
+  // setup anemometer
+  setupAnalogSensors(sens_anemom, NUM_ANEMOM);
+  
 }
+
+double temp_required = -1;
+double light_required = -1;
 
 void loop() {
+  //send init message, server returns current workload
 
+    //setup program
+
+      
+
+  // activate required peripherals
+    //heaeter
+  double temp_avg = 0;
+  for(int i=0; i<NUM_TEMP_SENSOR;i++){
+    temp_avg+=temp_values[i];
+  }
+  digitalWrite(HEAT_EN, temp_avg < temp_required); //activate heater if temp less than expected, else turn off
+
+    //lighting
+  double light_avg = 0;
+  for(int i=0; i<NUM_LIGHT_SENSOR;i++){
+    light_avg+=light_values[i];
+  }
+  digitalWrite(FOCO1_EN, light_avg < light_required); //turn on lighting if not enough ambient
+  digitalWrite(FOCO2_EN, light_avg < light_required);
+  digitalWrite(FOCO3_EN, light_avg < light_required);
+  digitalWrite(FOCO4_EN, light_avg < light_required);
+    //windows
+    //pumps
+    //relays / blinds
+
+  //read sensors and store values
+
+    //humidity
+  for(int i=0; i<NUM_HUM_SENSOR; i++){
+    sens_hum[i].value = processHumidityData(readAnalogSensor(sens_hum[i]));
+  }
+    //anemometer
+  for(int i=0; i<NUM_ANEMOM; i++){
+    sens_anemom[i].value = processWindData(readAnalogSensor(sens_anemom[i]));
+  }
+    //read values sent from slave board
+
+  
+  //send values
+
+  Serial.println(analogRead(A1));
+  delay(500);
 }
+
+void setupAnalogSensors(const AnalogSensor sensors[], int size){
+  for(int i=0; i<size; i++){
+    pinMode(sensors[i].read_pin, INPUT);
+    pinMode(sensors[i].enable_pin, OUTPUT);
+    digitalWrite(sensors[i].enable_pin, LOW);
+  }
+}
+
+double readAnalogSensor(const AnalogSensor sensor){
+  int polling = 0;
+  const int NUM_POLLS = 4;
+
+  digitalWrite(sensor.enable_pin, HIGH);
+  delay(20);
+  for(int i=0;i<NUM_POLLS;i++){
+    polling = polling + analogRead(sensor.read_pin);
+  }
+  digitalWrite(sensor.enable_pin, LOW);
+  return polling/NUM_POLLS; 
+}
+
+double processHumidityData(double readValue){
+  double hum_prcnt;
+  double voltage = readValue*3.33/4096; // read to voltage
+  voltage = voltage*1000/0.638; // to mV and factor in voltage divider
+  hum_prcnt = .439*pow(10,-10)*pow(voltage,3) -2.731*pow(10,-6)*pow(voltage,2) +4.868*pow(10, -3)*voltage -2.683; //vootage to himdity formula
+  return hum_prcnt;
+}
+
+double processWindData(double readValue){
+  double voltage = readValue*3.33/1024;
+  // voltage range for anemometer = (.4, 2)
+  // wind range according to voltage = (0, 32.4). According to datasheet: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/717/1733_Web.pdf 
+  if( voltage < 0.4) { return 0; }
+  if( voltage > 2) { return 32.4; }
+  return (voltage-0.4)*32.4 / (2-0.4); // translation from one range to another
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
