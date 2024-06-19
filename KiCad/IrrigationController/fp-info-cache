@@ -1,4 +1,4 @@
-23370551561024648
+23388095400975622
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -49223,69 +49223,6 @@ Mini USB 2.0 Type B
 0
 9
 6
-Connector_Video
-DVI-D_Molex_74320-4004_Horizontal
-DVI-D Dual Link connector, horizontal, 24 pins, Molex P/N 74320-4004, https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/salesdrawingpdf/743/74320/743204004_sd.pdf?inline
-dvi right angle
-0
-26
-25
-Connector_Video
-DVI-I_Molex_74320-1004_Horizontal
-DVI-I Dual Link connector, horizontal, 29 pins, Molex P/N 74320-1004, https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/salesdrawingpdf/743/74320/743201004_sd.pdf?inline
-dvi right angle
-0
-32
-30
-Connector_Video
-HDMI_A_Amphenol_10029449-x01xLF_Horizontal
-HDMI Type A connector, Amphenol 10029449-001TLF 10029449-001RLF 10029449-101TLF 10029449-101RLF, Right Angle(https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/10029449.pdf)
-hdmi right angle
-0
-23
-20
-Connector_Video
-HDMI_A_Contact_Technology_HDMI-19APL2_Horizontal
-HDMI Contact Technology Type A http://www.contactswitch.com/en/download.aspx?id=1449
-HDMI Contact Technology Type A
-0
-23
-20
-Connector_Video
-HDMI_A_Kycon_KDMIX-SL1-NS-WS-B15_VerticalRightAngle
-HDMI, Type A, Kycon KDMIX-SL1-NS-WS-B15, Vertical Right Angle, http://www.kycon.com/Pub_Eng_Draw/KDMIX-SL1-NS-WS-B15.pdf
-hdmi type a
-0
-23
-20
-Connector_Video
-HDMI_A_Molex_208658-1001_Horizontal
-HDMI Molex Type A https://www.molex.com/pdm_docs/sd/2086581001_sd.pdf
-HDMI Molex Type A
-0
-23
-20
-Connector_Video
-HDMI_Micro-D_Molex_46765-0x01
-HDMI, Micro, Type D, SMD, 0.4mm pitch, 19 ckt, right angle (http://www.molex.com/pdm_docs/sd/467651301_sd.pdf)
-hdmi micro type d right angle smd
-0
-23
-20
-Connector_Video
-HDMI_Micro-D_Molex_46765-1x01
-HDMI, Micro, Type D, THT, 0.4mm pitch, 19 ckt, right angle (http://www.molex.com/pdm_docs/sd/467651301_sd.pdf)
-hdmi micro type d right angle tht
-0
-23
-20
-Connector_Video
-HDMI_Micro-D_Molex_46765-2x0x
-HDMI, Micro, Type D, THT/SMD hybrid, 0.4mm pitch, 19 ckt, right angle (http://www.molex.com/pdm_docs/sd/467651301_sd.pdf)
-hdmi micro type d right angle tht smd hybrid 
-0
-23
-20
 Connector_Wago
 Wago_734-132_1x02_P3.50mm_Vertical
 Molex 734 Male header (for PCBs); Straight solder pin 1 x 1 mm, 734-132 , 2 Pins (http://www.farnell.com/datasheets/2157639.pdf), generated with kicad-footprint-generator
@@ -63633,6 +63570,251 @@ LED_THT
 LED_VCCLite_5381H7_6.35x6.35mm
 Yellow 5381 Series LED VCCLite https://vcclite.com/wp-content/uploads/wpallimport/files/files/5381Series.pdf http://static.vcclite.com/pdf/Mounting%20Hole%20Pattern%202.pdf
 Yellow 5381 Series LED
+0
+2
+2
+MisHuellas
+BNC_RSPro_546-4027_Vertical
+BNC female PCB mount 4 pin straight chassis connector http://www.te.com/usa-en/product-1-1478204-0.html
+BNC female PCB mount 4 pin straight chassis connector 
+0
+5
+2
+MisHuellas
+BNC_Socket_TE-AMP_1-1634612-0
+BNC Socket TYCO AMP
+BNC Socket TYCO AMP
+0
+4
+2
+MisHuellas
+BNC_Socket_TE-AMP_1-1634612-0_LargePads
+BNC Socket TYCO AMP
+BNC Socket TYCO AMP
+0
+4
+2
+MisHuellas
+CON_ICSP
+Conector ICSP
+Conector ICSP Microchip
+0
+6
+6
+MisHuellas
+Converter_DCDC_Murata_OKX-T_5-D12_THT
+Murata OKX-T/5-D12, Adjustable 5-Amp SIP Non-Isolated DC/DC Converter
+Murata OKX-T/5-D12 DC/DC Converter
+0
+5
+5
+MisHuellas
+Header-3
+Conector 3 pins
+CONN DEV
+0
+3
+3
+MisHuellas
+Header-6
+Conector 6 pins
+Conector
+0
+6
+6
+MisHuellas
+Header-8
+Conector 8 pins
+Conector
+0
+8
+8
+MisHuellas
+Header-10
+Conector 8 pins
+Conector
+0
+10
+10
+MisHuellas
+JUMPER
+Connecteurs 2 pins
+CONN DEV
+0
+2
+2
+MisHuellas
+Jack_DC
+Jack de alimentacion 2mm
+Jack DC
+0
+3
+3
+MisHuellas
+LTC-4627JR
+4 digit 7 segment red LED, https://optoelectronics.liteon.com/upload/download/DS30-2000-185/LTC-4627JR.pdf
+4 digit 7 segment red LED
+0
+16
+16
+MisHuellas
+Logo-Comillas
+
+
+0
+0
+0
+MisHuellas
+Logo-ICAI
+
+
+0
+0
+0
+MisHuellas
+PIN_ARRAY-6X1
+Connecteur 6 pins
+CONN DEV
+0
+6
+6
+MisHuellas
+PIN_ARRAY_2X1
+Connecteurs 2 pins
+CONN DEV
+0
+2
+2
+MisHuellas
+PinSocket_2x10_P2.54mm_Vertical_Launchpad
+Through hole straight socket strip, 2x10, 2.54mm pitch, double cols (from Kicad 4.0.7), script generated
+Through hole socket strip THT 2x10 2.54mm double row
+0
+20
+20
+MisHuellas
+Potenciometro
+Resistancia variable / potenciometro
+R
+0
+3
+3
+MisHuellas
+Puls_Vert
+
+
+0
+4
+2
+MisHuellas
+PuntaPruebaOsc
+Punta prueba osciloscopio
+DEV
+0
+1
+1
+MisHuellas
+Q_49U3HMS
+Crystal HC49/4HSMX
+
+0
+2
+2
+MisHuellas
+SMD_1206
+
+SMD_1206
+0
+2
+2
+MisHuellas
+SMD_1206_Diode
+
+Diode SMD 1206
+0
+2
+2
+MisHuellas
+SMD_BiLed
+
+BiLed
+0
+4
+4
+MisHuellas
+SMD_BiLed_WE_150121SV74000
+Bicolor LED, Wuerth Electronics 150121SV74000, https://www.we-online.de/katalog/datasheet/150121SV74000.pdf
+Bicolor LED
+0
+4
+4
+MisHuellas
+SMD_SO8
+SO-8
+SO SOIC
+0
+8
+8
+MisHuellas
+SMD_SOT89
+
+
+0
+4
+3
+MisHuellas
+SMD_TO252
+Power Transistor
+Power Transistor
+0
+3
+3
+MisHuellas
+SMD_TQFP_64
+
+TQFP64 TQFP SMD IC
+0
+64
+64
+MisHuellas
+SOLDER-JUMPER_1-WAY
+
+
+0
+2
+2
+MisHuellas
+SOLDER-JUMPER_1-WAY-CLOSED
+
+
+0
+2
+1
+MisHuellas
+SOLDER-JUMPER_2-WAY
+
+
+0
+3
+3
+MisHuellas
+SOLDER-JUMPER_2-WAY-CLOSED
+
+
+0
+3
+2
+MisHuellas
+SOT23-5
+
+
+0
+5
+5
+MisHuellas
+TerminalBlock_WE_691311700102
+Terminal Block WE 691311700102, 2 pins, pitch 5mm
+THT Terminal Block WE 691311700102 2 pins, pitch 5mm
 0
 2
 2
@@ -87632,125 +87814,6 @@ rotary encoder illuminated switch vertical
 0
 9
 8
-SamacSys_Parts
-691382040006 - WR-TBL
-
-
-0
-6
-6
-SamacSys_Parts
-20715569
-2071556-9-2
-Relay or Contactor
-0
-4
-4
-SamacSys_Parts
-ECS160185PXGMTR
-ECS-160-18-5PX-GM-TR-2
-Crystal or Oscillator
-0
-2
-2
-SamacSys_Parts
-ECS1601036CKMTR3
-ECS-160-10-36-CKM-TR3-2
-Crystal or Oscillator
-0
-4
-4
-SamacSys_Parts
-NE555DR
-D (R-PDSO-G8)
-Integrated Circuit
-0
-8
-8
-SamacSys_Parts
-QFP80P900X900X120-32N
-32-Lead Plastic Thin Quad Flatpack (PT) - 7x7x1.0 mm Body [TQFP]
-Integrated Circuit
-0
-32
-32
-SamacSys_Parts
-SMT_L7700-TT_VIS
-
-VEML7700-TT 
-0
-4
-4
-SamacSys_Parts
-SMT_L7700-TT_VIS-L
-
-VEML7700-TT 
-0
-4
-4
-SamacSys_Parts
-SMT_L7700-TT_VIS-M
-
-VEML7700-TT 
-0
-4
-4
-SamacSys_Parts
-SOIC127P599X175-8N
-
-
-0
-8
-8
-SamacSys_Parts
-SOIC127P600X175-8N
-D
-Integrated Circuit
-0
-8
-8
-SamacSys_Parts
-SOIC127P1030X265-28N
-(SO)28-Lead(SOIC)
-Integrated Circuit
-0
-28
-28
-SamacSys_Parts
-SOP65P490X110-8N
-DGK (S-PDSO-G8)
-Integrated Circuit
-0
-8
-8
-SamacSys_Parts
-SOP65P778X199-28N
-28 SSOP
-Integrated Circuit
-0
-28
-28
-SamacSys_Parts
-TEMT6000X01
-TEMT6000X01
-Phototransistor
-0
-3
-3
-SamacSys_Parts
-VEML7700
-VEML7700
-Integrated Circuit
-0
-4
-4
-SamacSys_Parts
-XRCGB16M000FXN14R0
-2.0 x 1.6 x 0.7 (mm)
-Crystal or Oscillator
-0
-4
-4
 Sensor
 ASAIR_AM2302_P2.54mm_Lead2.75mm_TabDown
 Temperature and humidity module, http://akizukidenshi.com/download/ds/aosong/AM2302.pdf
@@ -88290,34 +88353,6 @@ LEM Hall Effect Voltage transducer
 0
 5
 5
-SimbolosSnapEDA
-691382030006
-<b>WR-TBL Serie 382 - 2.50 mm Vertical PCB Header with Flanges <br></b>Max Height = 10.1mm , Pitch 2.5mm , 6pins
-
-0
-6
-6
-SimbolosSnapEDA
-691382040006
-<b>WR-TBL Serie 382 - 2.50 mm Horizontal PCB Header with Flanges<br></b>Max Height = 8.1mm , Pitch 2.5mm , 6pins
-
-0
-6
-6
-SimbolosSnapEDA
-BOARD_ARDUINO_MKR_WAN_1310
-
-
-0
-28
-28
-SimbolosSnapEDA
-XDCR_ALS-PT19-315C_L177_TR8
-
-
-0
-2
-2
 Socket
 3M_Textool_240-1288-00-0602J_2x20_P2.54mm
 3M 40-pin zero insertion force socket, though-hole, row spacing 25.4 mm (1000 mils)
