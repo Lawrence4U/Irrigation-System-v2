@@ -38,7 +38,7 @@
 #define RELAY_1_EN 6 + 8
 #define RELAY_2_EN 7 + 8
 
-Adafruit_MCP23X17 exp1, exp2;
+Adafruit_MCP23X17 expander1;
 
 void setup(){
     Serial.begin(9600);
@@ -46,19 +46,26 @@ void setup(){
     Serial.println("MCP23xxx Blink Test!");
 
     // uncomment appropriate mcp.begin
-    if (!exp1.begin_I2C(ADDR_EXP_1)) {
-        Serial.println("Error starting exp1.");
+    if (!expander1.begin_I2C(ADDR_EXP_1)) {
+        Serial.println("Error starting expander1.");
         while (1);
     }
-    if (!exp2.begin_I2C(ADDR_EXP_2)) {
-        Serial.println("Error starting exp2.");
-        while (1);
-    }
-    exp1.pinMode(1, OUTPUT);
-
+    expander1.pinMode(P1_EN, OUTPUT);
+    expander1.pinMode(P1_IN1, OUTPUT);
+    expander1.pinMode(P1_IN2, OUTPUT);
+    
     Serial.println("Looping...");
 }
 
 void loop(){
-
+    Serial.println("From pin " + String(P1_IN1) + "to " + String(P1_IN2));
+    expander1.digitalWrite(P1_EN, HIGH);
+    expander1.digitalWrite(P1_IN1, HIGH);
+    expander1.digitalWrite(P1_IN2, LOW);
+    delay(5000);
+    Serial.println("Reversed");
+    expander1.digitalWrite(P1_EN, HIGH);
+    expander1.digitalWrite(P1_IN1, LOW);
+    expander1.digitalWrite(P1_IN2, HIGH);
+    delay(5000);
 }

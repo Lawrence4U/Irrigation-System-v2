@@ -128,6 +128,7 @@ double processHumidityData(double readValue); // transform analog value to humid
 double processWindData(double readValue); // transform analog value to wind speed in m/s
   //expander and actuator related
 void setPinModes(Adafruit_MCP23X17 expander, L298_Peripheral peripherals[], int size, bool direction); // set all pinModes sequentially
+void togglePeripheral(Adafruit_MCP23X17 expander, L298_Peripheral peripheral, bool direction);
 
 void togglePin(int pin){
   pinMode(pin, OUTPUT);
@@ -291,7 +292,11 @@ void setPinModes(Adafruit_MCP23X17 expander, L298_Peripheral peripherals[], int 
   }
 }
 
-
+void togglePeripheral(Adafruit_MCP23X17 expander, L298_Peripheral peripheral, bool direction){
+  expander.digitalWrite(peripheral.enable_pin, direction);
+  expander.digitalWrite(peripheral.pin1, direction);
+  expander.digitalWrite(peripheral.pin2, !direction);
+}
 
 
 
