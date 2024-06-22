@@ -1,4 +1,7 @@
+#include <Adafruit_VEML7700.h>
 #include <Wire.h>
+#include <serialProtocol.h>
+#include <Temperature_LM75_Derived.h>
 
 #define MOSI 11
 #define MISO 12
@@ -13,78 +16,40 @@
 #define TMP_CONF_VAL 0b0110000
 #define LIGHT_ADDR 0x10
 
-#define REQUEST 0x2A
-
-char buffer[64];
-int rcvIndex = 0;
-bool newData = false;
-bool send_res = false;
-char collected_data[32];
-
+Generic_LM75 temperature(TMP75_ADDR);
+Adafruit_VEML7700 veml = Adafruit_VEML7700();
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ;  // wait for serial port to connect. Needed for native USB port only
   }
+
+  if (!veml.begin()) {
+    Serial.println("Sensor not found");
+    while (1);
+  }
+
   Serial.println("Ready\n");
 
   Wire.begin();
 }
 
+char sendBuffer[8];
+float temp_data=0;
+float light_data=0;
+
 void loop() {
-  rcvIndex = 0;
-  buffer[0] = '\0';
 
-  //Read Order
-  while (Serial.available()) {
-    buffer[rcvIndex] = Serial.read();
-    newData = true;
-    rcvIndex++;
-  }
+  //Read sensors
+  temp_data = temperature.readTemperatureC();
+  light_data = veml.readLux(VEML_LUX_AUTO);
 
-  //Process
-  if (newData) {
-    if (strstr(buffer, REQUEST) != NULL) {
-      //preparar collected_data
-      collected_data = readSensors();
-      send_res = true;
-    }
-  }
+  //send data
+  prepareData(sendBuffer, TEMPERATURE, temp_data);
+  Serial.println(sendBuffer);
+  prepareData(sendBuffer, LIGHT, light_data);
+  Serial.println(sendBuffer);
+  delay(1000);
 
-  //Response
-  if (send_res) {
-    Serial.println(collected_data);
-    send_res = false;
-  }
-
-}
-
-void startTmp(){
-  Wire.beginTransmission(TMP75_ADDR);
-  Wire.write(TMP_CONF_ADDR);
-  Wire.write(TMP_CONF_VAL);
-  Wire.endTransmission();
-}
-
-int readTemp(){
-  int value = -99;
-  Wire.beginTransmission(TMP75_ADDR);
-  Wire.write(TMP_READ_ADDR);
-  Wire.endTransmission();
-
-  Wire.requestFrom(TMP75_ADDR,2);
-  delay(300);//Bit resolution sets a max conversion time of 300ms
-
-  rcvIndex=0;
-  if(Wire.available()<=2){
-    while(Wire.available()){
-      buffer[rcvIndex] = Serial.read();
-      rcvIndex++;
-    }
-    rcvIndex=0;
-  }
-  value = buffer[0] | buffer[1] << 8;
-  Serial.println(value);
-  return value;
 }
