@@ -1,1 +1,26 @@
-{"V0": ["20", "10"], "V1": ["0", "0"], "V2": ["0", "0"], "V3": ["0", "0"]}
+{
+    "pumps": { 
+        "1": {"duration": 0, "start": 0},
+        "2": {"duration": 0, "start": 0},
+        "3": {"duration": 0, "start": 0},
+        "4": {"duration": 0, "start": 0},
+        "5": {"duration": 0, "start": 0}
+    },
+    "lights": {
+        "1": {"duration": 0, "start": 0},
+        "2": {"duration": 0, "start": 0},
+        "3": {"duration": 0, "start": 0},
+        "4": {"duration": 0, "start": 0}
+    },
+    "blinds":{
+        "1": {"duration": 0, "start": 0},
+        "2": {"duration": 0, "start": 0}
+    },
+    "windows":{
+        "1": {"aperture": 0, "start": 0, "duration": 0},
+        "2": {"aperture": 0, "start": 0, "duration": 0}
+    },
+    "heating":{
+        "temp_limit": 0
+    }
+}
