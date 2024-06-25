@@ -14293,6 +14293,16 @@
 		)
 		(uuid "e9cf17fb-5678-4ae6-9917-f2182c334e75")
 	)
+	(text "Está mal el encapsulado. Corregir"
+		(exclude_from_sim no)
+		(at 256.286 282.448 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "eb09195f-1b74-4f80-ad92-f30982a6d87d")
+	)
 	(label "P4_EN"
 		(at 62.23 255.27 0)
 		(fields_autoplaced yes)
