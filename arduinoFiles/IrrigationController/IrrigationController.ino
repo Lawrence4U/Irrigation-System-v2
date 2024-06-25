@@ -1,7 +1,7 @@
+#include <Adafruit_MCP23X17.h>
+#include <Adafruit_MCP23XXX.h>
 #include <RTCZero.h>
 #include <MKRWAN_v2.h>
-//#include <I2C_16Bit.h>
-#include <Wire.h>
 #include "arduino_secrets.h"
 
 // analog pins definition A#
@@ -32,21 +32,20 @@
 #define IODIR_B 0x01 // [0,1] -> [output,input]
 #define IOCON_CONFIG 0b00001000 //set HAEN 1 to enable addressing through pins
 
-
 //temp sensor addresses
 // #define ADDR_TEMP 0b1001000
 // #define TEMP_READ 0b0
 
 //pin addresses of I/O expander EXP_1
 //GPIOB
-#define P1_EN   0
-#define P1_IN1  1
-#define P1_IN2  2
-#define P2_EN   3
-#define P2_IN1  4
-#define P2_IN2  5
-#define P5_IN1  6
-#define P5_IN2  7
+#define P1_EN   0 + 8 //in Adafruit_MCP23X17 libray GPIOA has 0-7 pins and B 8-15
+#define P1_IN1  1 + 8
+#define P1_IN2  2 + 8
+#define P2_EN   3 + 8
+#define P2_IN1  4 + 8
+#define P2_IN2  5 + 8
+#define P5_IN1  6 + 8
+#define P5_IN2  7 + 8
 //GPIOA
 #define P5_EN  0
 #define P4_EN  1
@@ -65,54 +64,71 @@
 #define W1_IN1  4
 #define W1_IN2  5
 //GPIOB
-#define R1_EN      0
-#define R1_IN1     1
-#define R1_IN2     2
-#define RELAY_1_EN 6
-#define RELAY_2_EN 7
+#define R1_EN      0 + 8
+#define R1_IN1     1 + 8
+#define R1_IN2     2 + 8
+#define RELAY_1_EN 6 + 8
+#define RELAY_2_EN 7 + 8
 
-LoRaModem modem;
-RTCZero rtc;
-
-String appEui = SECRET_APP_EUI;
-String appKey = SECRET_APP_KEY;
-
-// typedef enum{
-//   HUMIDITY1,
-//   HUMIDITY2,
-//   HUMIDITY3,
-//   ANEMOMETER,
-//   TEMPERATURE,
-//   LIGHT
-// }SensorType;
-typedef struct {
-    const int read_pin;
-    const int enable_pin;
-    double value;
-} AnalogSensor;
-
-// typedef struct {
-//   SensorType type;
-//   double value;
-// } SensorValue;
-
+// arrays size constants for easier scaling in case of changes
 #define NUM_HUM_SENSOR 3
 #define NUM_ANEMOM 1
 #define NUM_TEMP_SENSOR 1
 #define NUM_LIGHT_SENSOR 1
 #define NUM_SENSORS NUM_HUM_SENSOR + NUM_LIGHT_SENSOR + NUM_ANEMOM + NUM_TEMP_SENSOR
 
+#define NUM_PUMPS 5
+#define NUM_WINDOWS 2
+#define NUM_REALYS 2
+#define NUM_RESERVE_PER 1
+
+LoRaModem modem; // handles LoRa connectivity and messaging
+RTCZero rtc; // handles RTC module
+Adafruit_MCP23X17 expander1, expander2; // object to handle I2C communications with expanders as a regular microcontroller with digitalREad/Write etc functions
+
+String appEui = SECRET_APP_EUI;
+String appKey = SECRET_APP_KEY;
+
+// struct to handle each analog sensor and store its value
+typedef struct {
+    const int read_pin;
+    const int enable_pin;
+    double value;
+} AnalogSensor;
+
+typedef enum{
+  Expander1,
+  Expander2,
+}Expander;
+
+// struct to handle each peripheral conected to the L298. Default behaviour will be current from pin1 to pin2
+typedef struct {
+  const int enable_pin;
+  const int pin1;
+  const int pin2;
+} L298_Peripheral;
+
+// Initialize all sensors and value storage
 AnalogSensor sens_hum[NUM_HUM_SENSOR] = {{S_HUM_1_IN, S_HUM_1_EN, -1},{S_HUM_2_IN, S_HUM_2_EN, -1},{S_HUM_3_IN, S_HUM_3_EN, -1}}; 
 AnalogSensor sens_anemom[NUM_ANEMOM] = {{S_ANEM_IN, NULL, -1}};
 double temp_values[NUM_TEMP_SENSOR] = {-1};
 double light_values[NUM_LIGHT_SENSOR] = {-1};
 
+// Initialize all actuators. No need to add references to the assigned expander since each array is contained in the same expander
+L298_Peripheral pumps[NUM_PUMPS] = {{P1_EN, P1_IN1, P1_IN2},{P2_EN, P2_IN1, P2_IN2},{P3_EN, P3_IN1, P3_IN2},{P4_EN, P4_IN1, P4_IN2},{P5_EN, P5_IN1, P5_IN2}};
+L298_Peripheral windows[NUM_WINDOWS] = {{W1_EN, W1_IN1, W1_IN2},{W2_EN, W2_IN1, W2_IN2}};
+L298_Peripheral reserve[NUM_RESERVE_PER] = {{R1_EN, R1_IN1, R1_IN2}};
+int relays[NUM_REALYS] = {RELAY_1_EN, RELAY_2_EN};
+
+// Function definitions
+  //sensor related
 void setupAnalogSensors(const AnalogSensor sensors[], int num_sensors); // setup sensors
 double readAnalogSensor(const AnalogSensor sensor); // read sensor value multiple times and return average
 double processHumidityData(double readValue); // transform analog value to humidity percentage
 double processWindData(double readValue); // transform analog value to wind speed in m/s
-void setupExpansors(); // set config and port configuration for each as per #definitions
-void setI2CPin(bool pinValue, int exp_address, int port); // set pin of expansor to high or low 
+  //expander and actuator related
+void setPinModes(Adafruit_MCP23X17 expander, L298_Peripheral peripherals[], int size, bool direction); // set all pinModes sequentially
+void togglePeripheral(Adafruit_MCP23X17 expander, L298_Peripheral peripheral, bool direction);
 
 void togglePin(int pin){
   pinMode(pin, OUTPUT);
@@ -149,11 +165,32 @@ void setup() {
   setupAnalogSensors(sens_hum, NUM_HUM_SENSOR);
   // setup anemometer
   setupAnalogSensors(sens_anemom, NUM_ANEMOM);
+
+  // setup expanders and actuators
+  if (!expander1.begin_I2C(ADDR_EXP_1)) {
+    Serial.println("Error initializing expander 1.");
+    while (1);
+  }
+  if (!expander2.begin_I2C(ADDR_EXP_2)) {
+    Serial.println("Error initializing expander 1.");
+    while (1);
+  }
+    // pinmodes
+  setPinModes(expander1, pumps, NUM_PUMPS, OUTPUT);
+  setPinModes(expander2, windows, NUM_WINDOWS, OUTPUT);
+  setPinModes(expander2, reserve, NUM_RESERVE_PER, OUTPUT);
+  for(int i=0; i<NUM_REALYS; i++){
+    expander2.pinMode(relays[i], OUTPUT);
+  }
+
   
 }
 
 double temp_required = -1;
 double light_required = -1;
+bool activate_lights = false;
+bool open_windows = false;
+bool open_valves = false;
 
 void loop() {
   //send init message, server returns current workload
@@ -163,7 +200,7 @@ void loop() {
       
 
   // activate required peripherals
-    //heaeter
+    //heater
   double temp_avg = 0;
   for(int i=0; i<NUM_TEMP_SENSOR;i++){
     temp_avg+=temp_values[i];
@@ -180,6 +217,7 @@ void loop() {
   digitalWrite(FOCO3_EN, light_avg < light_required);
   digitalWrite(FOCO4_EN, light_avg < light_required);
     //windows
+  
     //pumps
     //relays / blinds
 
@@ -214,12 +252,18 @@ double readAnalogSensor(const AnalogSensor sensor){
   int polling = 0;
   const int NUM_POLLS = 4;
 
-  digitalWrite(sensor.enable_pin, HIGH);
+  if(sensor.enable_pin != NULL){
+    digitalWrite(sensor.enable_pin, HIGH);
+  }
+
   delay(20);
   for(int i=0;i<NUM_POLLS;i++){
     polling = polling + analogRead(sensor.read_pin);
   }
-  digitalWrite(sensor.enable_pin, LOW);
+
+  if(sensor.enable_pin != NULL){
+    digitalWrite(sensor.enable_pin, LOW);
+  }
   return polling/NUM_POLLS; 
 }
 
@@ -240,7 +284,19 @@ double processWindData(double readValue){
   return (voltage-0.4)*32.4 / (2-0.4); // translation from one range to another
 }
 
+void setPinModes(Adafruit_MCP23X17 expander, L298_Peripheral peripherals[], int size, bool direction){
+  for(int i=0; i<size; i++){
+    expander.pinMode(peripherals[i].enable_pin, direction);
+    expander.pinMode(peripherals[i].pin1, direction);
+    expander.pinMode(peripherals[i].pin2, direction);
+  }
+}
 
+void togglePeripheral(Adafruit_MCP23X17 expander, L298_Peripheral peripheral, bool direction){
+  expander.digitalWrite(peripheral.enable_pin, direction);
+  expander.digitalWrite(peripheral.pin1, direction);
+  expander.digitalWrite(peripheral.pin2, !direction);
+}
 
 
 

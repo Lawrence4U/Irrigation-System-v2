@@ -1,0 +1,4 @@
+{
+    "sketch": "slaveArduinoTests\\slaveArduinoTests.ino",
+    "board": "arduino:samd:mkrwan1300"
+}

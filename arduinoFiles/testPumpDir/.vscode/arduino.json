@@ -1,0 +1,4 @@
+{
+    "sketch": "testPumpDir.ino",
+    "board": "arduino:samd:mkrwan1300"
+}
