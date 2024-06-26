@@ -6,17 +6,21 @@ import json
 import threading
 import codecs
 import pytz
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 from tkinter.ttk import *
 from xmlrpc.client import Boolean
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
-from matplotlib.pyplot import text
 from matplotlib.sankey import RIGHT
 from base64 import b64encode, b64decode
 from threading import Timer
 from dateutil import parser
 from config import *
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 
 
 # Variables para identificar los canales de comunicación MQTT
@@ -151,7 +155,68 @@ def on_disconnect(client, userdata, rc):
 
 ### Plotting
 #-----------------------------------------------------------------------------------------------
+def update_plots(event=None):
+    timeframe = timeframe_combobox.get()
+    if timeframe == 'Días':
+        df_filtered = df.tail(30)
+    elif timeframe == 'Semanas':
+        df_filtered = df.tail(60)
+    elif timeframe == 'Meses':
+        df_filtered = df.tail(90)
+    else:
+        df_filtered = df
 
+    for ax, data in zip(axes.flatten(), ['Humedad', 'Temperatura', 'Luz', 'Viento']):
+        ax.clear()
+        for tick in ax.get_xticklabels():
+            tick.set_rotation(30)
+        ax.plot(df_filtered['Time'], df_filtered[data])
+        xfmt = matplotlib.dates.DateFormatter('%d-%m-%y %H:%M')
+        ax.xaxis.set_major_formatter(xfmt)
+        ax.set_title(data)
+
+    fig.tight_layout()
+    canvas.draw()
+
+# funcion que teniendo los parámetros coje los elementos de una fuente de datos
+# el tiempo se puede coger del propio mensaje del ttn
+def mostrarGrafico(values, figura, ax):
+    # int(values['slider'])
+    data = getDatos()
+    datos = {}
+    print(data)
+    # ordenamos los datos en caso de que no esten ordenados en el archivo
+    ordered_data = dict(sorted(data.items(), key=lambda x: datetime.strptime(x[0], '%Y-%m-%d %H:%M'), reverse=False))
+
+    for i, j in ordered_data.items():
+        datos[datetime.strptime(i, '%Y-%m-%d %H:%M')] = j
+    data = {}
+    if values['-COMBO-'] == 'Meses':
+        for i, j in datos.items():
+            if i > (datetime.now() - relativedelta(months=int(values['slider']))):
+                data[i] = j
+    elif values['-COMBO-'] == 'Semanas':
+        for i, j in datos.items():
+            if i > (datetime.now() - timedelta(weeks=int(values['slider']))):
+                data[i] = j
+    else:
+        for i, j in datos.items():
+            if i > (datetime.now() - timedelta(days=int(values['slider']))):
+                data[i] = j
+    del datos
+
+    # al creacion del fig debe tener en cuenta los parametros
+    ax.cla()
+    ax.grid()
+
+    for tick in ax.get_xticklabels():
+        tick.set_rotation(45)
+    ax.plot(list(data.keys()), list(data.values()))
+    ax.legend( ['sensor 1', 'sensor 2', 'sensor 3', 'sensor 4'])
+    xfmt = matplotlib.dates.DateFormatter('%d-%m-%y %H:%M')
+    ax.xaxis.set_major_formatter(xfmt)
+    figura.draw()
+    return
 #-----------------------------------------------------------------------------------------------
 
 def enviarPaquete(client):
@@ -257,8 +322,8 @@ if __name__ == "__main__":
     
     ##GUI
     root = tk.Tk()
-    root.title("Interfaz")
-    root.geometry("550x650+600+300")
+    root.title("Sistema de monitorización y control")
+    root.geometry("700x1050+600+300")
     
     #cargando estilos
     style = Style()
@@ -290,12 +355,14 @@ if __name__ == "__main__":
     tabWindows = Frame(tabGroup)
     tabHeating = Frame(tabGroup)
     tabBlinds = Frame(tabGroup)
+    tabMonitor = Frame(tabGroup)
     
     tabGroup.add(tabValves, text='Válvulas')
     tabGroup.add(tabLigths, text='Luces')
     tabGroup.add(tabWindows, text='Ventanas')
     tabGroup.add(tabHeating, text='Calefacción')
     tabGroup.add(tabBlinds, text='Persianas')
+    tabGroup.add(tabMonitor, text="Monitorización")
     tabGroup.pack(padx=10, pady=10, fill='both', expand=True)
     
     
@@ -594,13 +661,56 @@ if __name__ == "__main__":
     
     ##CALEFACCION -------------------------------------------------------------------------------------------------------------------------
     
-    Label(tabHeating, text='Temeperatura objetivo:').grid(column=0, row=tabHeating.grid_size()[1], pady=5, padx=10, sticky="w")
+    Label(tabHeating, text='Temperatura objetivo:').grid(column=0, row=tabHeating.grid_size()[1], pady=5, padx=10, sticky="w")
     Entry(tabHeating).grid(column=0, row=tabHeating.grid_size()[1], pady=5, padx=10, sticky="w")
     
     
     ##Guardado de configuración
     Button(tabHeating, text='Guardar Programa', command=saveValveConf).grid(column=0, row=tabHeating.grid_size()[1],padx=10, pady=15, sticky="w")
 
+
+    ## Monitorización --------------------------------------------------------------------------------------------------------------------------
+    Label(tabMonitor, text='Elija el rango de tiempo a consultar:').grid(column=0, row=tabMonitor.grid_size()[1], pady=5, padx=10, sticky="w")
+    
+    param_frame = Frame(tabMonitor)
+    param_frame.grid(column=0, row=tabMonitor.grid_size()[1], pady=5, padx=5, sticky='w')
+    
+    time_slider = tk.Scale(param_frame, from_=1, to=10, orient=tk.HORIZONTAL)
+    time_slider.grid(column=0, row=0, pady=5, padx=10, sticky="w")
+    timeframe_options = ['Días', 'Semanas', 'Meses']
+    timeframe_combobox = Combobox(param_frame, values=timeframe_options)
+    timeframe_combobox.current(0)  # Set default to 'All Data'
+    timeframe_combobox.grid(column=1, row=0, pady=5, padx=10, sticky="w")
+    timeframe_combobox.bind('<<ComboboxSelected>>', update_plots)
+    Button(param_frame, text='Actualizar Salida', command=update_plots).grid(column=2, row=0,padx=10, pady=15, sticky="w")
+    
+    
+    plot_frame = Frame(tabMonitor)
+    plot_frame.grid(row=tabMonitor.grid_size()[1]+1, column=0, columnspan=2, padx=10, pady=10, sticky="sew")
+
+    tabMonitor.grid_rowconfigure(1, weight=1)
+    tabMonitor.grid_columnconfigure(0, weight=1)
+    plot_frame.grid_rowconfigure(0, weight=1)
+    plot_frame.grid_columnconfigure(0, weight=1)
+    
+    fig, axes = plt.subplots(2, 2, figsize=(10, 8))
+    time = pd.date_range(start='1/1/2022', periods=100, freq='D')
+    data1 = np.random.randn(100).cumsum()
+    data2 = np.random.randn(100).cumsum()
+    data3 = np.random.randn(100).cumsum()
+    data4 = np.random.randn(100).cumsum()
+    df = pd.DataFrame({'Time': time, 'Humedad': data1, 'Temperatura': data2, 'Luz': data3, 'Viento': data4})
+    for ax, data in zip(axes.flatten(), ['Humedad', 'Temperatura', 'Luz', 'Viento']):
+        for tick in ax.get_xticklabels():
+            tick.set_rotation(30)
+        xfmt = matplotlib.dates.DateFormatter('%d-%m-%y %H:%M')
+        ax.xaxis.set_major_formatter(xfmt)
+        ax.plot(df['Time'], df[data])
+        ax.set_title(data)
+
+    fig.tight_layout()
+    canvas = FigureCanvasTkAgg(fig, master=plot_frame)
+    canvas.get_tk_widget().grid(row=0, column=0, sticky="nsew")
     
     root.update_idletasks() #hacemos update del root para que este todo listo
     #distribución

@@ -3,7 +3,7 @@
 
 
 void prepareData(char* buffer, SensorType sensor_type, float sensor_value){
-    sprintf(buffer, "%02d%05d", sensor_type, (int)(sensor_value*100));
+    sprintf(buffer, "%02d%06d", sensor_type, (int)(sensor_value*100));
 }
 
 void processSerialData(SensorData* sens_data, char *rcv){
@@ -12,10 +12,10 @@ void processSerialData(SensorData* sens_data, char *rcv){
     SensorType s_type = (SensorType)atoi(type);
     type[2] = '\0';
     
-    char numbers[4];
+    char numbers[5];
     char decimals[3];
-    strncpy(numbers, rcv + 2, 3);
-    numbers[3] = '\0';
+    strncpy(numbers, rcv + 2, 4);
+    numbers[4] = '\0';
     strncpy(decimals, rcv + 5, 2);
     decimals[2] = '\0';
     
