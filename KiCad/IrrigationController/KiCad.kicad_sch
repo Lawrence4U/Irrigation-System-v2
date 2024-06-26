@@ -9323,6 +9323,12 @@
 		(uuid "6f3715b7-a2b0-4985-835d-98bf21a376ec")
 	)
 	(junction
+		(at 261.62 20.32)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "70d3f20e-a118-4a4e-9112-c239c72f32c4")
+	)
+	(junction
 		(at 102.87 152.4)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -9435,6 +9441,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9ddd4c27-fe89-4034-ade6-af17530c9369")
+	)
+	(junction
+		(at 261.62 27.94)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9de15c54-f34c-4cbc-a7aa-c5a520ee813d")
 	)
 	(junction
 		(at 119.38 185.42)
@@ -11940,6 +11952,16 @@
 	)
 	(wire
 		(pts
+			(xy 254 20.32) (xy 261.62 20.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e719bfc-6799-4b2f-b9c3-25ba0b8f21cc")
+	)
+	(wire
+		(pts
 			(xy 144.78 152.4) (xy 143.51 152.4)
 		)
 		(stroke
@@ -13157,6 +13179,16 @@
 			(type default)
 		)
 		(uuid "ceec873b-96a7-44a9-bfb3-958ccfbb3e19")
+	)
+	(wire
+		(pts
+			(xy 254 27.94) (xy 261.62 27.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cf6849ed-92b3-4af1-abe8-140da51b4682")
 	)
 	(wire
 		(pts
@@ -27376,6 +27408,82 @@
 			(project "KiCad"
 				(path "/557850ac-a946-4dff-8187-8978353577df"
 					(reference "#PWR097")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 254 24.13 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ab57c088-d1e3-4b57-a967-3baeb53ea3e3")
+		(property "Reference" "C15"
+			(at 256.54 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0.1u"
+			(at 250.19 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+			(at 254.9652 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 254 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 254 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "80-C1206X104K1RAUTO"
+			(at 254 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4215acbf-45e1-4a94-bcda-abfe692083d2")
+		)
+		(pin "2"
+			(uuid "b24c3f05-0ab4-41c1-9841-d03ff9dc53c9")
+		)
+		(instances
+			(project "KiCad"
+				(path "/557850ac-a946-4dff-8187-8978353577df"
+					(reference "C15")
 					(unit 1)
 				)
 			)
