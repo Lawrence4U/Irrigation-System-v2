@@ -14424,7 +14424,7 @@
 		(uuid "12ed24a1-b068-49a0-9f81-bd1827943114")
 	)
 	(label "SDA"
-		(at 82.55 267.97 0)
+		(at 82.55 270.51 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -14776,7 +14776,7 @@
 		(uuid "586519ca-a879-4d9e-ae02-cbdff15d3b47")
 	)
 	(label "SDA"
-		(at 24.13 267.97 0)
+		(at 24.13 270.51 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -14798,7 +14798,7 @@
 		(uuid "5d2e1483-1b7c-4339-8508-e9579c203642")
 	)
 	(label "SCL"
-		(at 369.57 39.37 90)
+		(at 367.03 39.37 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -15480,7 +15480,7 @@
 		(uuid "d8650b6b-e8c3-4d43-8ebe-d53c82f987e3")
 	)
 	(label "SCL"
-		(at 24.13 270.51 0)
+		(at 24.13 267.97 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -15612,7 +15612,7 @@
 		(uuid "f902be8c-519f-4c5d-9e55-23b1ea29edf4")
 	)
 	(label "SDA"
-		(at 367.03 39.37 90)
+		(at 369.57 39.37 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -15678,7 +15678,7 @@
 		(uuid "fdbd760a-a7aa-4d80-a61f-2a9be6239906")
 	)
 	(label "SCL"
-		(at 82.55 270.51 0)
+		(at 82.55 267.97 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -16913,7 +16913,7 @@
 			(uuid "ab5423d2-651d-4981-ba23-8f05800502b4")
 		)
 		(instances
-			(project ""
+			(project "KiCad"
 				(path "/557850ac-a946-4dff-8187-8978353577df"
 					(reference "J20")
 					(unit 1)
@@ -28102,7 +28102,7 @@
 			(uuid "0e1a6f7c-3386-49c9-8ab4-4b80a853c773")
 		)
 		(instances
-			(project ""
+			(project "KiCad"
 				(path "/557850ac-a946-4dff-8187-8978353577df"
 					(reference "J23")
 					(unit 1)
@@ -28259,7 +28259,7 @@
 			(uuid "42e48303-d43c-4df3-9ad4-6d1f789940f8")
 		)
 		(instances
-			(project ""
+			(project "KiCad"
 				(path "/557850ac-a946-4dff-8187-8978353577df"
 					(reference "J24")
 					(unit 1)
@@ -31088,7 +31088,7 @@
 			(uuid "68feedce-1cb3-4047-89ae-2080552cf148")
 		)
 		(instances
-			(project ""
+			(project "KiCad"
 				(path "/557850ac-a946-4dff-8187-8978353577df"
 					(reference "J4")
 					(unit 1)
@@ -32880,7 +32880,7 @@
 			(uuid "78a7426b-a9fe-4b69-89f9-e7aaff5af968")
 		)
 		(instances
-			(project ""
+			(project "KiCad"
 				(path "/557850ac-a946-4dff-8187-8978353577df"
 					(reference "J22")
 					(unit 1)
