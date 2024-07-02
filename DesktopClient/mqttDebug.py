@@ -1,4 +1,7 @@
 import paho.mqtt.client as mqtt
+import base64
+import codecs
+import json
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -10,7 +13,12 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+    print(msg.topic, msg.payload)
+    try:
+        recibido = json.loads(msg.payload.decode('utf-8'))
+        print(codecs.decode(str(base64.b64decode(recibido['data']).hex()), 'hex').decode('utf-8'))
+    except:
+        print("Message error")
 
 def on_disconnect(client, userdata, rc):
     if rc != 0:

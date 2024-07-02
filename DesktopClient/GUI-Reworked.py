@@ -25,9 +25,9 @@ from dateutil.relativedelta import relativedelta
 
 # Variables para identificar los canales de comunicación MQTT
 # Cuenta de Lorenzo
-application_id = 'tfg-icai'
-tenant_id = 'tfg-icai'
-device_id = 'arduino-tfg'
+APP_ID = '4938bc44-db96-41f8-bd30-d4618b39297e'
+# tenant_id = 'tfg-icai'
+DEV_EUI = 'a8610a32373f9001'
 
 ### GUI Functions
 def saveValveConf():
@@ -84,53 +84,44 @@ def find2nd(string, char):
 def on_message(client, userdata, msg):
     # print(msg.topic)
     print(msg.payload.decode('utf-8'))
-    recibido = json.loads(msg.payload.decode('utf-8'))
+    
     # mensajes desde la placa
-    # Cuenta Lorenzo
-#    if msg.topic == 'v3/tfg-icai@tfg-icai/devices/arduino-tfg/up':
-    # Cuenta INEA-ICAI
-    if msg.topic == 'v3/' + application_id + '@' + tenant_id + '/devices/' + device_id + '/up': #TODO cambiar a topic
-        print(codecs.decode(str(b64decode(recibido['uplink_message']['frm_payload']).hex()), 'hex').decode(
-            'utf-8'))
-        if codecs.decode(str(b64decode(recibido['uplink_message']['frm_payload']).hex()), 'hex').decode(
-                'utf-8') == 'ERROR':
+    # application/4938bc44-db96-41f8-bd30-d4618b39297e/device/a8610a32373f9001/event/up
+    if msg.topic == 'application/' + APP_ID + '/device/'  + DEV_EUI + '/event/up': 
+        decoded_payload = codecs.decode(str(b64decode(json.loads(msg.payload.decode('utf-8'))['data']).hex()), 'hex').decode(
+            'utf-8')
+        timestamp = json.loads(msg.payload.decode('utf-8'))['time']
+        if decoded_payload == 'ERROR':
             # window['warning'].update(visible=True, value='Error en el envío, pruebe a enviarlo de nuevo')
             return
 
-        if codecs.decode(str(b64decode(recibido['uplink_message']['frm_payload']).hex()), 'hex').decode(
-                'utf-8') == 'Init':
+        if decoded_payload == 'Init':
             return
 
         try:
-            humedad = int(
-                codecs.decode(str(b64decode(recibido['uplink_message']['frm_payload']).hex()), 'hex').decode(
-                    'utf-8'))
-            str_humedad = codecs.decode(str(b64decode(recibido['uplink_message']['frm_payload']).hex()), 'hex').decode(
-                    'utf-8')
-            humedad_sensor = [int(str_humedad[0:3]), int(str_humedad[3:6]),
-                              int(str_humedad[6:9]), int(str_humedad[9:12])]
-            print('Humedad sensor 1 = ', humedad_sensor[0])
-            print('Humedad sensor 2 = ', humedad_sensor[1])
-            print('Humedad sensor 1 = ', humedad_sensor[2])
-            print('Humedad sensor 2 = ', humedad_sensor[3])
+            # humedad = int(decoded_payload)
+            str_humedad = decoded_payload
+            # humedad_sensor = [int(str_humedad[0:3]), int(str_humedad[3:6]),
+            #                   int(str_humedad[6:9]), int(str_humedad[9:12])]
+            # print('Humedad sensor 1 = ', humedad_sensor[0])
+            # print('Humedad sensor 2 = ', humedad_sensor[1])
+            # print('Humedad sensor 1 = ', humedad_sensor[2])
+            # print('Humedad sensor 2 = ', humedad_sensor[3])
             t = Timer(390, timerEnd, args=[client])
             t.start()
             
-            print('% de humedad:', humedad)
-            madridtz = pytz.timezone("Europe/Madrid")
-            try:
-                tiempo = parser.isoparse(recibido['uplink_message']['received_at']).astimezone(madridtz)
-            except:
-                tiempo = parser.isoparse(recibido['received_at']).astimezone(madridtz)#al hacer pruebas cuando el paqeute viene de la plataforma es distinto
-            print(tiempo)
-            fecha = str(tiempo.date())
-            hora = str(tiempo.time())
+            # print('% de humedad:', humedad)
+            madrid_tz = pytz.timezone("Europe/Madrid")
+            timestamp = datetime.fromisoformat(timestamp).astimezone(madrid_tz)
+            print(timestamp)
+            fecha = str(timestamp.date())
+            hora = str(timestamp.time())
             key = str(fecha + " " + hora[:find2nd(hora, ':')])
             datos_prev = getDatos()
 
             #print(datos_prev)
-            if key not in datos_prev.keys():
-                datos_prev[key] = humedad_sensor
+            # if key not in datos_prev.keys():
+                # datos_prev[key] = humedad_sensor
             json_completo = json.dumps(datos_prev)
 
             with open("datos.json", "w") as outfile:
@@ -145,7 +136,7 @@ def on_message(client, userdata, msg):
     # Cuenta Lorenzo
 #    elif msg.topic == 'v3/tfg-icai@tfg-icai/devices/arduino-tfg/down/queued':
     elif msg.topic == 'v3/' + application_id + '@' + tenant_id + '/devices/' + device_id + '/down/queued':
-        print(b64decode(recibido['downlink_queued']['frm_payload']).hex().upper())
+        print(b64decode(decoded_payload['downlink_queued']['frm_payload']).hex().upper())
 
 
 def on_disconnect(client, userdata, rc):
@@ -351,17 +342,15 @@ if __name__ == "__main__":
     tabGroup = Notebook(top_frame)
     
     tabValves = Frame(tabGroup)
-    tabLigths = Frame(tabGroup)
     tabWindows = Frame(tabGroup)
-    tabHeating = Frame(tabGroup)
+    tabObjectives = Frame(tabGroup)
     tabBlinds = Frame(tabGroup)
     tabMonitor = Frame(tabGroup)
     
     tabGroup.add(tabValves, text='Válvulas')
-    tabGroup.add(tabLigths, text='Luces')
     tabGroup.add(tabWindows, text='Ventanas')
-    tabGroup.add(tabHeating, text='Calefacción')
     tabGroup.add(tabBlinds, text='Persianas')
+    tabGroup.add(tabObjectives, text='Otros')
     tabGroup.add(tabMonitor, text="Monitorización")
     tabGroup.pack(padx=10, pady=10, fill='both', expand=True)
     
@@ -435,79 +424,6 @@ if __name__ == "__main__":
     
     ##Guardado de configuración
     Button(tabValves, text='Guardar Programa', command=saveValveConf).grid(column=0, row=tabValves.grid_size()[1],padx=10, pady=15, sticky="w")
-    
-    ### Luces ----------------------------------------------------------------------------------------------------
-    
-    ##Activación/desactivación del programa
-    btnActivo_lights = Button(tabLigths, command=toggle, text='Inactivo', style='A.TButton')
-    btnActivo_lights.grid(column=0, row=tabLigths.grid_size()[1], pady=5, padx=10, sticky='w')
-    ##Etiqueta
-    Label(tabLigths, text='Frecuencia del programa').grid(column=0, row=tabLigths.grid_size()[1], pady=10, sticky='w', padx=10)
-    
-    ##Selector de frecuencia
-    varFrecuencia = tk.IntVar()
-    fr_freq = Frame(tabLigths)
-    radFreq1_lights = tk.Radiobutton(fr_freq, text='Único',indicatoron=0, variable=varFrecuencia, value =0, command=commandFreq)
-    radFreq2_lights = tk.Radiobutton(fr_freq, text='Personalizado',indicatoron= 0,variable=varFrecuencia, value =1, command=commandFreq)
-    fr_freq.grid(column=0, row=tabLigths.grid_size()[1], pady=5, columnspan=3, padx=10, sticky='w')
-    radFreq1_lights.pack(side='left')
-    radFreq2_lights.pack(side='right')
-
-
-    ##Programacion semanal
-    ###Primero habria que cargar la selección existente para este dia TODO
-    fr_sem = Frame(tabLigths)
-    opcion= [tk.IntVar(value=0),tk.IntVar(value=0),tk.IntVar(value=0),tk.IntVar(value=0),tk.IntVar(value=0),tk.IntVar(value=0),tk.IntVar(value=0)]
-    chLunes = Checkbutton(fr_sem, text="L", variable=opcion[0], command=cButtonSemanal, style='A.TCheckbutton')
-    chMartes = Checkbutton(fr_sem, text="M", variable=opcion[1], command=cButtonSemanal, style='A.TCheckbutton')
-    chMiercoles = Checkbutton(fr_sem, text="X", variable=opcion[2], command=cButtonSemanal, style='A.TCheckbutton')
-    chJueves = Checkbutton(fr_sem, text="J", variable=opcion[3], command=cButtonSemanal, style='A.TCheckbutton')
-    chViernes = Checkbutton(fr_sem, text="V", variable=opcion[4], command=cButtonSemanal, style='A.TCheckbutton')
-    chSabado = Checkbutton(fr_sem, text="S", variable=opcion[5], command=cButtonSemanal, style='A.TCheckbutton')
-    chDomingo = Checkbutton(fr_sem, text="D", variable=opcion[6], command=cButtonSemanal, style='A.TCheckbutton')
-    chLunes.grid(row=0, column=0, padx=5)
-    chMartes.grid(row=0, column=1, padx=5)
-    chMiercoles.grid(row=0, column=2, padx=5)
-    chJueves.grid(row=0, column=3, padx=5)
-    chViernes.grid(row=0, column=4, padx=5)
-    chSabado.grid(row=0, column=5, padx=5)
-    chDomingo.grid(row=0, column=6, padx=5)
-    fr_sem.grid(column=0, row=tabLigths.grid_size()[1], pady=5, columnspan=3, padx=30, sticky="ew")
-    
-    ##configuración de los programas
-    listaOpciones=[]
-    for i in range(144):
-        for j in range(6):
-            listaOpciones.append(f'{i%24}:{(j*10):02d}')
-    
-    listaOpciones = tuple(listaOpciones)
-    
-    Label(tabLigths, text='Tiempos de arranque:').grid(column=0, row=tabLigths.grid_size()[1], pady=5, padx=10, sticky='w')
-    
-    tiempos = {}
-    for i in range(4):
-        fr_hora = Frame(tabLigths)
-        Label(fr_hora, text='Hora: ').grid(column=0, row=0, pady=5, padx=10)
-        tiempos[i] = {"start": tk.StringVar(value='0:00'), "duration": tk.StringVar(value='0:00')}
-        Spinbox(fr_hora, textvariable=tiempos[i]['start'], wrap=True, values=listaOpciones, style='A.TSpinbox', width=5).grid(column=1, row=0, pady=5, padx=10)
-
-        Label(fr_hora, text='Duracion: ').grid(column=2, row=0, pady=5, padx=10)
-        Spinbox(fr_hora, textvariable=tiempos[i]['duration'], wrap=True, values=listaOpciones, style='A.TSpinbox', width=5).grid(column=3, row=0, pady=5, padx=10)
-        
-        fr_hora.grid(column=0, row=tabLigths.grid_size()[1], pady=5, columnspan=3, padx=30, sticky="ew")
-    
-    ##Valvulas a las que aplicar el programa
-    optVal = [tk.IntVar(value=0),tk.IntVar(value=0),tk.IntVar(value=0),tk.IntVar(value=0)]
-    Label(tabLigths, text='Focos a operar:').grid(column=0, row=tabLigths.grid_size()[1], pady=5, padx=10, sticky="w")
-    Checkbutton(tabLigths, text="Foco 1", variable=optVal[0]).grid(column=0, row=tabLigths.grid_size()[1],padx=20, sticky="w")
-    Checkbutton(tabLigths, text="Foco 2", variable=optVal[1]).grid(column=0, row=tabLigths.grid_size()[1],padx=20, sticky="w")
-    Checkbutton(tabLigths, text="Foco 3", variable=optVal[2]).grid(column=0, row=tabLigths.grid_size()[1],padx=20, sticky="w")
-    Checkbutton(tabLigths, text="Foco 4", variable=optVal[3]).grid(column=0, row=tabLigths.grid_size()[1],padx=20, sticky="w")
-    
-    ##Guardado de configuración
-    Button(tabLigths, text='Guardar Programa', command=saveValveConf).grid(column=0, row=tabValves.grid_size()[1],padx=10, pady=15, sticky="w")
-    
-    ##-------------------------------------------------------------------------------------------------------------------------------------
     
     ### Ventanas ----------------------------------------------------------------------------------------------------
     
@@ -659,14 +575,21 @@ if __name__ == "__main__":
     
     ##-------------------------------------------------------------------------------------------------------------------------------------
     
-    ##CALEFACCION -------------------------------------------------------------------------------------------------------------------------
+    ##OTROS -------------------------------------------------------------------------------------------------------------------------
     
-    Label(tabHeating, text='Temperatura objetivo:').grid(column=0, row=tabHeating.grid_size()[1], pady=5, padx=10, sticky="w")
-    Entry(tabHeating).grid(column=0, row=tabHeating.grid_size()[1], pady=5, padx=10, sticky="w")
+    Label(tabObjectives, text='Temperatura objetivo:').grid(column=0, row=tabObjectives.grid_size()[1], pady=5, padx=10, sticky="w")
+    Entry(tabObjectives).grid(column=0, row=tabObjectives.grid_size()[1], pady=5, padx=10, sticky="w")
     
     
     ##Guardado de configuración
-    Button(tabHeating, text='Guardar Programa', command=saveValveConf).grid(column=0, row=tabHeating.grid_size()[1],padx=10, pady=15, sticky="w")
+    Button(tabObjectives, text='Guardar Programa', command=saveValveConf).grid(column=0, row=tabObjectives.grid_size()[1],padx=10, pady=15, sticky="w")
+    
+    Label(tabObjectives, text='Luz (lux) objetivo:').grid(column=0, row=tabObjectives.grid_size()[1], pady=5, padx=10, sticky="w")
+    Entry(tabObjectives).grid(column=0, row=tabObjectives.grid_size()[1], pady=5, padx=10, sticky="w")
+    
+    
+    ##Guardado de configuración
+    Button(tabObjectives, text='Guardar Programa', command=saveValveConf).grid(column=0, row=tabObjectives.grid_size()[1],padx=10, pady=15, sticky="w")
 
 
     ## Monitorización --------------------------------------------------------------------------------------------------------------------------

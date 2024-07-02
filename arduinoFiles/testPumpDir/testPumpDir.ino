@@ -41,31 +41,29 @@
 Adafruit_MCP23X17 expander1;
 
 void setup(){
-    Serial.begin(9600);
-    //while (!Serial);
+    Serial.begin(115200);
+    while (!Serial);
     Serial.println("MCP23xxx Blink Test!");
 
-    // uncomment appropriate mcp.begin
     if (!expander1.begin_I2C(ADDR_EXP_1)) {
         Serial.println("Error starting expander1.");
         while (1);
     }
-    expander1.pinMode(P1_EN, OUTPUT);
-    expander1.pinMode(P1_IN1, OUTPUT);
+    expander1.pinMode(W2_EN, OUTPUT);
+    expander1.pinMode(W2_IN1, OUTPUT);
     expander1.pinMode(P1_IN2, OUTPUT);
+    expander1.digitalWrite(W2_EN, HIGH);
     
     Serial.println("Looping...");
 }
 
 void loop(){
     Serial.println("From pin " + String(P1_IN1) + "to " + String(P1_IN2));
-    expander1.digitalWrite(P1_EN, HIGH);
-    expander1.digitalWrite(P1_IN1, HIGH);
-    expander1.digitalWrite(P1_IN2, LOW);
+    expander1.digitalWrite(W2_IN1, HIGH);
+    expander1.digitalWrite(W2_IN2, LOW);
     delay(5000);
     Serial.println("Reversed");
-    expander1.digitalWrite(P1_EN, HIGH);
-    expander1.digitalWrite(P1_IN1, LOW);
-    expander1.digitalWrite(P1_IN2, HIGH);
+    expander1.digitalWrite(W2_IN1, LOW);
+    expander1.digitalWrite(W2_IN2, HIGH);
     delay(5000);
 }

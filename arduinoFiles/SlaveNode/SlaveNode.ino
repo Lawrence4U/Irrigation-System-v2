@@ -20,7 +20,7 @@ Generic_LM75 temperature(TMP75_ADDR);
 Adafruit_VEML7700 veml = Adafruit_VEML7700();
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   while (!Serial) {
     ;  // wait for serial port to connect. Needed for native USB port only
   }
