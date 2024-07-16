@@ -147,24 +147,40 @@ def on_disconnect(client, userdata, rc):
 ### Plotting
 #-----------------------------------------------------------------------------------------------
 def update_plots(event=None):
-    timeframe = timeframe_combobox.get()
-    if timeframe == 'Días':
-        df_filtered = df.tail(30)
-    elif timeframe == 'Semanas':
-        df_filtered = df.tail(60)
-    elif timeframe == 'Meses':
-        df_filtered = df.tail(90)
-    else:
-        df_filtered = df
+    print(timeframe_combobox.get(), time_slider.get())
+    time_segment = timeframe_combobox.get()
+    time_amount = time_slider.get()
+    end_time = datetime.now()
+    match time_segment:
+        case 'Días':
+            start_time = end_time - timedelta(days=time_amount)
+            print(start_time, end_time)
+            df_filtered = df.loc[(df['Time'] >= start_time) & (df['Time'] <= end_time)]
+        case 'Semanas':
+            start_time = end_time - timedelta(weeks=time_amount)
+            df_filtered = df.loc[(df['Time'] >= start_time) & (df['Time'] <= end_time)]
+        case 'Meses':
+            start_time = end_time - timedelta(days=30.44*time_amount)
+            df_filtered = df.loc[(df['Time'] >= start_time) & (df['Time'] <= end_time)]
+        case _:
+            start_time = end_time - timedelta(days=time_amount)
+            df_filtered = df.loc[(df['Time'] >= start_time) & (df['Time'] <= end_time)]
 
+    print(df_filtered.shape)
     for ax, data in zip(axes.flatten(), ['Humedad', 'Temperatura', 'Luz', 'Viento']):
         ax.clear()
         for tick in ax.get_xticklabels():
             tick.set_rotation(30)
-        ax.plot(df_filtered['Time'], df_filtered[data])
-        xfmt = matplotlib.dates.DateFormatter('%d-%m-%y %H:%M')
+        xfmt = matplotlib.dates.DateFormatter('%d-%m %H:%M')
         ax.xaxis.set_major_formatter(xfmt)
         ax.set_title(data)
+        if data == 'Humedad':
+            ax.plot(df_filtered['Time'], df_filtered['Humedad_1'], label='Sensor 1')
+            ax.plot(df_filtered['Time'], df_filtered['Humedad_2'], label='Sensor 2')
+            ax.plot(df_filtered['Time'], df_filtered['Humedad_3'], label='Sensor 3')
+            ax.legend()
+        else:
+            ax.plot(df_filtered['Time'], df_filtered[data], label=data)
 
     fig.tight_layout()
     canvas.draw()
@@ -565,9 +581,9 @@ if __name__ == "__main__":
     
     ##Valvulas a las que aplicar el programa
     optVal = [tk.IntVar(value=0),tk.IntVar(value=0),tk.IntVar(value=0),tk.IntVar(value=0)]
-    Label(tabBlinds, text='Ventanas a operar:').grid(column=0, row=tabBlinds.grid_size()[1], pady=5, padx=10, sticky="w")
-    Checkbutton(tabBlinds, text="Ventana 1", variable=optVal[0]).grid(column=0, row=tabBlinds.grid_size()[1],padx=20, sticky="w")
-    Checkbutton(tabBlinds, text="Ventana 2", variable=optVal[1]).grid(column=0, row=tabBlinds.grid_size()[1],padx=20, sticky="w")
+    Label(tabBlinds, text='Persianas a operar:').grid(column=0, row=tabBlinds.grid_size()[1], pady=5, padx=10, sticky="w")
+    Checkbutton(tabBlinds, text="Perisanas 1", variable=optVal[0]).grid(column=0, row=tabBlinds.grid_size()[1],padx=20, sticky="w")
+    Checkbutton(tabBlinds, text="Perisanas 2", variable=optVal[1]).grid(column=0, row=tabBlinds.grid_size()[1],padx=20, sticky="w")
 
     
     ##Guardado de configuración
@@ -617,19 +633,28 @@ if __name__ == "__main__":
     plot_frame.grid_columnconfigure(0, weight=1)
     
     fig, axes = plt.subplots(2, 2, figsize=(10, 8))
-    time = pd.date_range(start='1/1/2022', periods=100, freq='D')
-    data1 = np.random.randn(100).cumsum()
-    data2 = np.random.randn(100).cumsum()
-    data3 = np.random.randn(100).cumsum()
-    data4 = np.random.randn(100).cumsum()
-    df = pd.DataFrame({'Time': time, 'Humedad': data1, 'Temperatura': data2, 'Luz': data3, 'Viento': data4})
+    time = pd.date_range(start='6/6/2024', periods=200, freq='7min')
+    data1 = np.random.randn(200).cumsum()
+    data1_1 = np.random.randn(200).cumsum()
+    data1_2 = np.random.randn(200).cumsum()
+    data2 = np.random.randn(200).cumsum()
+    data3 = np.random.randn(200).cumsum()
+    data4 = np.random.randn(200).cumsum()
+    df = pd.DataFrame({'Time': time, 'Humedad_1': data1,'Humedad_2': data1_1,'Humedad_3': data1_2, 'Temperatura': data2, 'Luz': data3, 'Viento': data4})
     for ax, data in zip(axes.flatten(), ['Humedad', 'Temperatura', 'Luz', 'Viento']):
         for tick in ax.get_xticklabels():
             tick.set_rotation(30)
-        xfmt = matplotlib.dates.DateFormatter('%d-%m-%y %H:%M')
+        xfmt = matplotlib.dates.DateFormatter('%d-%m %H:%M')
         ax.xaxis.set_major_formatter(xfmt)
-        ax.plot(df['Time'], df[data])
         ax.set_title(data)
+        if data == 'Humedad':
+            ax.plot(df['Time'], df['Humedad_1'], label='Sensor 1')
+            ax.plot(df['Time'], df['Humedad_2'], label='Sensor 2')
+            ax.plot(df['Time'], df['Humedad_3'], label='Sensor 3')
+            ax.legend()
+        else:
+            ax.plot(df['Time'], df[data], label=data)
+        
 
     fig.tight_layout()
     canvas = FigureCanvasTkAgg(fig, master=plot_frame)

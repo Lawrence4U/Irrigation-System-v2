@@ -1,0 +1,1 @@
+Only files with modified parameteres are included. The rest have been kept default per the chirpstack documentation [guide](https://www.chirpstack.io/docs/getting-started/debian-ubuntu.html)
